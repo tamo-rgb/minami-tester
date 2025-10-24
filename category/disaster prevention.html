@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>札幌市南区</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- スクロール進捗バー -->
+    <div id="scrollProgress"></div>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">南区</div>
+        <div class="header-right">
+            <a href="#emergency" class="content">緊急情報</a>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="hamburger"></div>
+                <span>メニュー</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- スライドメニュー -->
+    <nav id="sideMenu">
+        <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">お知らせ</a></li>
+            <li><a href="#">地域イベント</a></li>
+            <li><a href="#">行政手続き</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <section class="yohaku">
+        </section>
+
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="index.html">ホームページ</a> ＞ <span>情報を探す</span>
+        </nav>
+
+        <section class="section">
+            <h3 class="omidashi">カテゴリーから探す</h3>
+            <div class="grid">
+                <a href="category/gyosei.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_1.png" alt="手続きアイコン">
+                    </div>
+                    <h3>行政/手続き</h3>
+                    <p>住民票/税金/選挙</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_2.png" alt="健康アイコン">
+                    </div>
+                    <h3>防災・安全</h3>
+                    <p>避難所・災害情報</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_1.png" alt="手続きアイコン">
+                    </div>
+                    <h3>子育て・教育</h3>
+                    <p>保育園情報/習い事</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_2.png" alt="健康アイコン">
+                    </div>
+                    <h3>健康・福祉</h3>
+                    <p>予防接種/高齢者福祉</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_2.png" alt="健康アイコン">
+                    </div>
+                    <h3>まちづくり</h3>
+                    <p>施設/町内会</p>
+                </a>
+
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_2.png" alt="健康アイコン">
+                    </div>
+                    <h3>暮らし・文化</h3>
+                    <p>ゴミ出し/地域イベント</p>
+                </a>
+            </div>
+        </section>
+
+
+        <section class="yohaku">
+        </section>
+
+    </main>
+
+    <!-- 下部固定メニュー -->
+
+        <nav class="bottom-bar">
+            <a href="index.html" class="bottom-btn">トップページへ</a>
+            <a href="notifications.html" class="bottom-btn">通知オン</a>
+            <a href="contact.html" class="bottom-btn">お問い合わせ</a>
+        </nav>
+
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
+<style>
+    .yohaku {
+        margin-top: 70px;
+    }
+
+    .main-title {
+        margin-left: 30px;
+    }
+
+    /* ===== パンくずリスト ===== */
+    .breadcrumb {
+        font-size: 13px;
+        margin: 10px 0 0 20px;
+        color: #555;
+    }
+
+    .breadcrumb a {
+        color: #2e8b57;
+        /* 緑色リンク */
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .breadcrumb span {
+        color: #333;
+    }
+
+
+    /* 各ページパーツ */
+    .section {
+        padding: 7px;
+        border-top: 1px solid #f0f2f4;
+        background: #fff;
+        margin: 7px;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .section p {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    h3.main-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2a5d34;
+        margin: 3px 0px 0px 10px;
+    }
+
+    .omidashi {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2a5d34;
+        padding: 0px;
+        margin: 0px 0px 10px 5px;
+    }
+
+
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* ← 3列に変更 */
+        gap: 7px;
+        /* カードの間隔 */
+        margin: 5px 0px 5px 0px;
+    }
+
+    .grid_target {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* ← 3列に変更 */
+        gap: 7px;
+        /* カードの間隔 */
+        margin: 10px 0px 10px 0px;
+    }
+
+    .grid_target .card h3 {
+        font-size: 13px;
+        margin: 0px;
+    }
+
+    .grid_event {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* ← 3列に変更 */
+        gap: 7px;
+        /* カードの間隔 */
+        margin: 10px 0px 10px 0px;
+    }
+
+    .grid_event .card h3 {
+        font-size: 13px;
+        margin: 0px;
+    }
+
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        /* 縦並び */
+        align-items: center;
+        /* 中央揃え */
+        background: #fff;
+        border-radius: 10px;
+        padding: 7px;
+        border: 1px solid #d4e9d4;
+        box-shadow: 0 1px 2px rgba(10, 10, 10, 0.04);
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+        color: #2e8b57;
+        margin: 4px 0 8px 0;
+        text-align: center;
+    }
+
+    .card p {
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+    }
+
+
+    .list-item {
+        padding: 5px 0;
+        border-bottom: 1px dashed #eee;
+    }
+
+    .list-item .meta {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 10px;
+    }
+</style>

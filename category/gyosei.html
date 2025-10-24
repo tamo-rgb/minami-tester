@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行政／手続き｜札幌市南区</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .yohaku {
+            margin-top: 70px;
+        }
+
+        /* ===== パンくずリスト ===== */
+        .breadcrumb {
+            font-size: 13px;
+            margin: 10px 0 0 20px;
+            color: #555;
+        }
+
+        .breadcrumb a {
+            color: #2e8b57;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #333;
+        }
+
+        /* ===== 見出しタブ ===== */
+        .toggle-tab {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #cce3cc;
+            background: #f7faf7;
+            margin: 8px 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-tab:hover {
+            background: #e8f5e9;
+        }
+
+        .toggle-tab img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .toggle-tab h4 {
+            font-size: 17px;
+            color: #2a5d34;
+            margin: 0;
+        }
+
+        /* ===== トグル内容 ===== */
+        /* トグル内容の背景・線・矢印 */
+        .toggle-content {
+            display: none;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .toggle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 25px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #2e8b57;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .toggle-item:hover {
+            background: #f1fdf1;
+        }
+
+        .toggle-item .arrow {
+            font-size: 14px;
+            color: #999;
+        }
+
+
+        .toggle-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toggle-content li {
+            margin: 5px 0;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .toggle-content li::before {
+            content: "・";
+            position: absolute;
+            left: 0;
+            color: #2e8b57;
+        }
+
+        .toggle-content a {
+            color: #2e8b57;
+            text-decoration: none;
+        }
+
+        .toggle-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* 開いた時 */
+        .toggle-tab.active {
+            background: #dff0df;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">南区</div>
+        <div class="header-right">
+            <a href="#emergency" class="content">緊急情報</a>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="hamburger"></div>
+                <span>メニュー</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="yohaku"></section>
+
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="../index.html">ホームページ</a> ＞
+            <a href="../search.html">情報を探す</a> ＞
+            <span>行政／手続き</span>
+        </nav>
+
+        <!-- トグルリスト -->
+        <section class="section">
+            <h3 class="omidashi">行政／手続き</h3>
+
+            <!-- タブ1 -->
+            <div class="toggle-tab">
+                <img src="../icon_1.png" alt="住民票アイコン">
+                <h4>住民票・戸籍</h4>
+            </div>
+            <div class="toggle-content">
+                <a href="resident.html" class="toggle-item">
+                    住民票の写しをとるには
+                    <span class="arrow">▶</span>
+                </a>
+                <a href="move.html" class="toggle-item">
+                    転入・転出の手続き
+                    <span class="arrow">▶</span>
+                </a>
+                <a href="mynumber.html" class="toggle-item">
+                    マイナンバーカード申請
+                    <span class="arrow">▶</span>
+                </a>
+            </div>
+
+
+        </section>
+    </main>
+
+    <!-- トグルスクリプト -->
+    <script>
+        const tabs = document.querySelectorAll('.toggle-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tab.classList.toggle('active');
+                const content = tab.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>札幌市南区 - トップページ</title>
+  <!-- 角丸フォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Rounded Mplus 1c", "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      background: #fff6ec;
+      color: #333;
+      padding-bottom: 70px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: #2d852e;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .header-right a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .header-right a:hover {
+      text-decoration: underline;
+    }
+
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 50px;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+      transition: right 0.3s ease;
+      z-index: 1001;
+      padding-top: 20px;
+      border-left: 6px solid #2d852e;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav li a {
+      text-decoration: none;
+      color: #2d852e;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    nav li a:hover {
+      color: #852d3d;
+    }
+
+    nav.open {
+      right: 0;
+    }
+
+    main {
+      padding: 80px 20px 20px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #2d852e;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .find-button {
+      display: block;
+      width: 90%;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 15px;
+      font-size: 18px;
+      background-color: #2d852e;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .find-button:hover {
+      background-color: #236a24;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #2d852e;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    .bottom-bar button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .bottom-bar button:hover {
+      color: #fff6ec;
+    }
+
+    @media(min-width:768px) {
+      header {
+        padding: 15px 40px;
+      }
+
+      .bottom-bar {
+        display: none;
+      }
+
+      nav {
+        width: 300px;
+      }
+    }
+
+    /* ポップアップ */
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .popup-content {
+      background: #fff6ec;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 3px solid #2d852e;
+    }
+
+    #closePopup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      border: none;
+      background: none;
+      color: #852d3d;
+      cursor: pointer;
+    }
+
+    .question {
+      font-size: 18pt;
+      margin-top: 60px;
+      text-align: center;
+      color: #2d852e;
+      font-weight: bold;
+    }
+
+    .choices {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .choices label {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .choices input[type="radio"] {
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    .illustration {
+      width: 160px;
+      height: 160px;
+      background: #fff;
+      border-radius: 12px;
+      border: 2px dashed #2d852e;
+      margin-bottom: 20px;
+    }
+
+    #backBtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: none;
+      background: none;
+      border: none;
+      color: #2d852e;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    #nextBtn {
+      padding: 12px 0;
+      width: 100%;
+      font-size: 16px;
+      background-color: #2d852e;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+      background-color: #236a24;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: #ddd;
+      margin-top: 20px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #852d3d;
+      transition: width 0.3s ease;
+    }
+
+    /* スマホ */
+    @media(max-width:480px) {
+      .popup-content {
+        width: 95%;
+        padding: 20px;
+      }
+
+      .illustration {
+        width: 120px;
+        height: 120px;
+      }
+
+      .question {
+        font-size: 16pt;
+        margin-top: 40px;
+      }
+
+      #nextBtn,
+      #backBtn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">札幌市南区</div>
+    <div class="header-right">
+      <a href="emergency.html">緊急情報</a>
+      <div class="menu-toggle">☰</div>
+    </div>
+  </header>
+
+  <nav id="sideMenu">
+    <ul>
+      <li><a href="#">ホーム</a></li>
+      <li><a href="#">お知らせ</a></li>
+      <li><a href="#">行政サービス</a></li>
+      <li><a href="#">観光情報</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>札幌市南区へようこそ</h1>
+    <p>地域の情報・行政サービス・観光などをお届けします。</p>
+    <a href="find.html" class="find-button">探す</a>
+  </main>
+
+  <div class="bottom-bar">
+    <button id="scrollTop">ページトップへ</button>
+    <button>通知をオン</button>
+    <button>お問い合わせ</button>
+  </div>
+
+  <!-- ポップアップ -->
+  <div id="popup">
+    <div class="popup-content">
+      <button id="closePopup">×</button>
+      <div class="question" id="questionText">質問1</div>
+      <div class="choices">
+        <label><input type="radio" name="answer" value="はい"> はい</label>
+        <label><input type="radio" name="answer" value="いいえ"> いいえ</label>
+      </div>
+      <div class="illustration"></div>
+      <button id="backBtn">戻る</button>
+      <button id="nextBtn">次へ</button>
+      <div class="progress-container">
+        <div id="progressBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('sideMenu');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+
+    document.getElementById('scrollTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ポップアウト設定
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closePopup');
+    const backBtn = document.getElementById('backBtn');
+    const questionText = document.getElementById('questionText');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+
+    const questions = [
+      "質問1: サンプル質問1ですか？",
+      "質問2: サンプル質問2ですか？",
+      "質問3: サンプル質問3ですか？",
+      "質問4: サンプル質問4ですか？"
+    ];
+
+    let currentQuestion = 0;
+
+    function updateQuestion() {
+      questionText.textContent = questions[currentQuestion];
+      backBtn.style.display = currentQuestion > 0 ? "block" : "none";
+      progressBar.style.width = (currentQuestion / questions.length * 100) + "%";
+      document.querySelector('input[value="はい"]').checked = true;
+    }
+
+    updateQuestion();
+
+    closeBtn.addEventListener('click', () => popup.style.display = 'none');
+
+    backBtn.addEventListener('click', () => {
+      if (currentQuestion > 0) { currentQuestion--; updateQuestion(); }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQuestion < questions.length - 1) { currentQuestion++; updateQuestion(); }
+      else { popup.style.display = 'none'; }
+    });
+  </script>
+</body>
+</html>

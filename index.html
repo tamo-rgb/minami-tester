@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>札幌市南区</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- スクロール進捗バー -->
+  <div id="scrollProgress"></div>
+
+  <!-- チュートリアル用オーバーレイ -->
+  <div id="tutorialOverlay"></div>
+
+  <!-- チュートリアル吹き出し -->
+  <div id="tutorial" class="tutorial">
+    <div class="bubble">
+      <p id="tutorialText">目的に応じてボタンを選択してみましょう！</p>
+      <span class="page-indicator">[1/4]</span>
+      <button id="tutorialClose">OK</button>
+
+    </div>
+  </div>
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="logo">南区</div>
+    <div class="header-right">
+      <a href="#emergency" class="content">緊急情報</a>
+      <div class="menu-toggle" id="menuToggle">
+        <div class="hamburger"></div>
+        <span>メニュー</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- スライドメニュー -->
+  <nav id="sideMenu">
+    <ul>
+      <li><a href="#">ホーム</a></li>
+      <li><a href="#">お知らせ</a></li>
+      <li><a href="#">地域イベント</a></li>
+      <li><a href="#">行政手続き</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <!-- Heroスライドショー -->
+    <section class="hero">
+      <a href="page1.html" class="hero-slide">
+        <img src="photo_1.jpg" alt="画像1">
+      </a>
+      <a href="page2.html" class="hero-slide">
+        <img src="photo_2.JPG" alt="画像2">
+      </a>
+      <a href="page3.html" class="hero-slide">
+        <img src="photo_3.JPG" alt="画像3">
+      </a>
+    </section>
+
+    <!-- コンテンツボックス -->
+    <section class="contents">
+      <a href="search.html" class="content-box">
+        <div class="icon">
+          <img src="icon_1.png" alt="情報を探すアイコン">
+        </div>
+        <div class="text">
+          <h3>情報を探す</h3>
+          <p>手続きを知りたい</p>
+        </div>
+        <div class="arrow"></div>
+      </a>
+
+      <a href="page2.html" class="content-box">
+        <div class="icon">
+          <img src="icon_2.png" alt="お知らせやニュースアイコン">
+        </div>
+        <div class="text">
+          <h3>お知らせやニュースを見る</h3>
+          <p>好きな情報にたどり着く</p>
+        </div>
+        <div class="arrow"></div>
+      </a>
+
+      <a href="page3.html" class="content-box">
+        <div class="icon">
+          <img src="icon_3.png" alt="カスタマイズ">
+        </div>
+        <div class="text">
+          <h3>カスタマイズする</h3>
+          <p>好きな情報にたどり着く</p>
+        </div>
+        <div class="arrow"></div>
+      </a>
+    </section>
+  </main>
+
+  <!-- 下部に花を置くエリア -->
+  <div id="flowerBed"
+    style="position: fixed; bottom: 45px; left: 10px; right: 10px; height: 60px; display:flex; gap:5px; align-items:center; z-index:900;">
+    <!-- 花はここにJSで追加 -->
+  </div>
+
+  <!-- 下部固定メニュー -->
+  <nav class="bottom-bar">
+    <a href="index.html" class="bottom-btn">トップページへ</a>
+    <a href="notifications.html" class="bottom-btn">通知オン</a>
+    <a href="contact.html" class="bottom-btn">お問い合わせ</a>
+  </nav>
+
+  <script src="script.js"></script>
+  <!-- ------------script------------------------------------ -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const welcomeOverlay = document.getElementById('welcomeOverlay');
+      const welcomeCloseBtn = document.getElementById('welcomeCloseBtn');
+
+      // 初回のみ表示
+      if (!localStorage.getItem('welcomeShown')) {
+        welcomeOverlay.style.display = 'flex';
+      } else {
+        welcomeOverlay.style.display = 'none';
+      }
+
+      welcomeCloseBtn.addEventListener('click', () => {
+        welcomeOverlay.style.display = 'none';
+        localStorage.setItem('welcomeShown', 'true');
+
+        // チュートリアル開始
+        tutorial.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+
+      // 花を増やす関数
+      function addFlower() {
+        const flowerBed = document.getElementById('flowerBed');
+        const flower = document.createElement('img');
+        flower.src = 'flower.png';
+        flower.style.width = '50px';
+        flower.style.height = '50px';
+        flower.style.transition = 'transform 0.3s';
+        flower.style.transform = 'scale(0)';
+        flowerBed.appendChild(flower);
+        setTimeout(() => {
+          flower.style.transform = 'scale(1)';
+        }, 10);
+
+        let count = parseInt(localStorage.getItem('flowerCount') || '0');
+        localStorage.setItem('flowerCount', count + 1);
+      }
+
+      // 過去の花を復元
+      const flowerBed = document.getElementById('flowerBed');
+      const count = parseInt(localStorage.getItem('flowerCount') || '0');
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('img');
+        flower.src = 'flower.png';
+        flower.style.width = '30px';
+        flower.style.height = '30px';
+        flowerBed.appendChild(flower);
+      }
+
+      // チュートリアル要素
+      const tutorial = document.getElementById('tutorial');
+      const overlay = document.getElementById('tutorialOverlay');
+      const closeBtn = document.getElementById('tutorialClose');
+      const tutorialText = document.getElementById('tutorialText');
+      const pageIndicator = document.querySelector('.page-indicator');
+
+      const contentBoxes = document.querySelectorAll('.content-box');
+      const highlightTargets = Array.from(contentBoxes).slice(0, 3); // 最初の3つだけ
+
+      let step = 1;
+
+      // 背景暗くするオーバーレイ
+      const dimOverlay = document.createElement('div');
+      dimOverlay.id = 'dimOverlay';
+      document.body.appendChild(dimOverlay);
+
+      // 初回表示
+      if (!localStorage.getItem('tutorialShown')) {
+        tutorial.style.display = 'block';
+        overlay.style.display = 'block';
+      }
+
+      closeBtn.addEventListener('click', () => {
+        if (step === 1) {
+          step = 2;
+          highlightTargets.forEach(box => box.classList.add('highlight'));
+
+          addFlower();
+        } else {
+          tutorial.style.display = 'none';
+          overlay.style.display = 'none';
+          dimOverlay.style.display = 'none';
+          highlightTargets.forEach(box => box.classList.remove('highlight'));
+
+          addFlower();
+          localStorage.setItem('tutorialShown', 'true');
+        }
+      });
+    });
+  </script>
+
+  <!-- ------------script------------------------------------ -->
+</body>
+<!-- ウェルカムポップアップ（ここに追記） -->
+<div id="welcomeOverlay"
+  style="position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255,255,255,0.95); z-index:2000; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; ">
+  <h1 style="font-size:18pt; margin-bottom:15px;">ようこそ札幌市南区へ</h1>
+  <p style="font-size:16pt; margin:30px;">初めてサイトを訪れる方にチュートリアルが出てきます。<br>途中で消すこともできます。<br>チュートリアルを行うといいことがあるかも！
+  </p>
+
+  <!-- 下部の花 -->
+  <div id="welcomeFlowerBed" style="display:flex; gap:10px; justify-content:center;">
+    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease forwards;">
+    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease 0.1s forwards;">
+    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease 0.2s forwards;">
+  </div>
+
+  <button id="welcomeCloseBtn"
+    style="margin-top:30px; padding:12px 24px; font-size:16px; background-color:#2a5d34; color:#fff; border:none; border-radius:8px; cursor:pointer;">OK</button>
+</div>
+
+</html>
+
+<style>
+  @keyframes flowerPop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  #tutorial {
+    width: 90%;
+    text-align: center;
+  }
+
+  /* === チュートリアル時のオーバーレイ === */
+  #tutorialOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    /* 半透明の黒 */
+    z-index: 999;
+    /* 吹き出しより少し下 */
+    display: none;
+    /* 最初は非表示 */
+  }
+
+  /* 吹き出しを最前面に */
+  .tutorial {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    /* オーバーレイより上 */
+    display: none;
+    text-align: center;
+  }
+
+  /* 吹き出しの枠部分 */
+  .bubble {
+    position: relative;
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    color: #333;
+    max-width: 300px;
+  }
+
+  /* 吹き出しの矢印（下向き） */
+  .bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    /* 吹き出しの下に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: #007bff transparent transparent transparent;
+  }
+
+  /* ページ番号（右下配置） */
+  .page-indicator {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 12px;
+    color: #007bff;
+    opacity: 0.8;
+  }
+
+  /* 閉じるボタン */
+  #tutorialClose {
+    margin-top: 8px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+
+  #tutorialClose:hover {
+    background: #0056b3;
+  }
+
+  /* === content-boxの強調表示用 === */
+  .highlight {
+    position: relative;
+    z-index: 1001;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* 背景を暗くする（吹き出し以外） */
+  #dimOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 998;
+    display: none;
+  }
+
+  /*-------------- 内容 */
+  .content-box .icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .content-box .text {
+    flex: 1;
+    margin: 0 15px 0 10px;
+  }
+
+  .content-box h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 0 7px 0;
+  }
+
+  .content-box p {
+    font-size: 16px;
+    margin: 0;
+  }
+</style>
