@@ -1,372 +1,616 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>札幌市南区</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>札幌市南区</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet"> -->
+
+    <!-- Intro.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js/minified/introjs.min.css">
+    <style>
+        /* ポップアウト */
+        #popup {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .form-section {
+            display: flex;
+            /* ラベルとselectを横並び */
+        }
+
+        .form-row {
+            display: flex;
+            /* 横並び */
+            gap: 20px;
+            /* セクション間の間隔 */
+            flex-wrap: wrap;
+            /* 小さい画面では縦に折り返す */
+        }
+
+        label {
+            font-weight: bold;
+            color:#333;
+        }
+
+        select {
+            width: 80px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        .popup-question {
+            display: flex;
+            text-align: left;
+            align-items: left;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background: #0073e6;
+        }
+
+        #contents {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .content-box .icon img {
+            width: 50px;
+            /* アイコンの幅 */
+            height: 50px;
+            /* アイコンの高さ */
+            object-fit: contain;
+            /* 画像の縦横比を維持 */
+        }
+
+        .content-box .text {
+            flex: 1;
+            color: #fffdf9;
+            margin: 0 15px 0 20px;
+        }
+
+        .content-box h3 {
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0 0 7px 0;
+        }
+
+        .content-box p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .personalize {
+            padding: 20px;
+            background-color: #C5EFC6;
+            color: #fff;
+        }
+
+        #form-box {
+            gap: 30px;
+        }
+
+        .recommended-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .recommended-card {
+            background: #f5f8fb;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 7px;
+            text-align: center;
+        }
+
+        .recommended-card h4 {
+            font-size: 16px;
+            color: #555555;
+            margin: 0px 0px 7px 0px;
+        }
+
+        .recommended-card p {
+            font-size: 14px;
+            margin: 0px 0px 8px 0px;
+            color: #333;
+        }
+
+        .recommended-card a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #0073e6;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .recommended-card a:hover {
+            background: #005bb5;
+        }
+
+
+        .yohaku {
+            padding-bottom: 100px;
+        }
+
+        /* トグルリスト */
+        .toggle-list {
+            margin-bottom:20px;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            background: #fff;
+        }
+
+        .toggle-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .toggle-header {
+            display: flex;
+            padding: 15px 40px;
+            cursor: pointer;
+            background: #247627;
+            font-weight: bold;
+            font-size:20px;
+        }
+
+        .toggle-header span{
+            margin-left: auto; /* 左側のテキストから自動で離す */
+        }
+
+        .toggle-header:hover {
+            background: #4e8e50;
+        }
+
+        .toggle-content {
+            display: none;
+            padding: 0px 30px 20px 30px;
+            background: #fff;
+        }
+
+        .toggle-item.active .toggle-content {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- スクロール進捗バー -->
-  <div id="scrollProgress"></div>
 
-  <!-- チュートリアル用オーバーレイ -->
-  <div id="tutorialOverlay"></div>
+    <!-- スクロール進捗バー -->
+    <div id="scrollProgress"></div>
 
-  <!-- チュートリアル吹き出し -->
-  <div id="tutorial" class="tutorial">
-    <div class="bubble">
-      <p id="tutorialText">目的に応じてボタンを選択してみましょう！</p>
-      <span class="page-indicator">[1/4]</span>
-      <button id="tutorialClose">OK</button>
+    <!-- ポップアップ -->
+    <div id="popup" style="display:none;">
+        <div class="popup-content">
+            <h3>はじめに質問です</h3>
 
+            <div class="popup-question">
+                <label>お住まいの地域</label>
+                <select id="popupRegion">
+                    <option value="">選択する</option>
+                    <option value="東京">東京</option>
+                    <option value="大阪">大阪</option>
+                    <option value="北海道">北海道</option>
+                </select>
+            </div>
+
+            <div class="popup-question">
+                <label>対象者</label>
+                <select id="popupAudience">
+                    <option value="">選択する</option>
+                    <option value="学生">学生</option>
+                    <option value="社会人">社会人</option>
+                    <option value="シニア">シニア</option>
+                    <option value="一般">特になし</option>
+                </select>
+            </div>
+
+            <button id="popupSubmit">完了</button>
+        </div>
     </div>
-  </div>
 
-  <!-- ヘッダー -->
-  <header>
-    <div class="logo">南区</div>
-    <div class="header-right">
-      <a href="#emergency" class="content">緊急情報</a>
-      <div class="menu-toggle" id="menuToggle">
-        <div class="hamburger"></div>
-        <span>メニュー</span>
-      </div>
-    </div>
-  </header>
 
-  <!-- スライドメニュー -->
-  <nav id="sideMenu">
-    <ul>
-      <li><a href="#">ホーム</a></li>
-      <li><a href="#">お知らせ</a></li>
-      <li><a href="#">地域イベント</a></li>
-      <li><a href="#">行政手続き</a></li>
-      <li><a href="#">お問い合わせ</a></li>
-    </ul>
-  </nav>
 
-  <!-- メインコンテンツ -->
-  <main>
-    <!-- Heroスライドショー -->
-    <section class="hero">
-      <a href="page1.html" class="hero-slide">
-        <img src="photo_1.jpg" alt="画像1">
-      </a>
-      <a href="page2.html" class="hero-slide">
-        <img src="photo_2.JPG" alt="画像2">
-      </a>
-      <a href="page3.html" class="hero-slide">
-        <img src="photo_3.JPG" alt="画像3">
-      </a>
-    </section>
-
-    <!-- コンテンツボックス -->
-    <section class="contents">
-      <a href="search.html" class="content-box">
-        <div class="icon">
-          <img src="icon_1.png" alt="情報を探すアイコン">
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">みなみく</div>
+        <div class="header-right">
+            <a href="#emergency" class="content" id="emergency">緊急情報</a>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="hamburger"></div>
+                <span>メニュー</span>
+            </div>
         </div>
-        <div class="text">
-          <h3>情報を探す</h3>
-          <p>手続きを知りたい</p>
+    </header>
+
+    <!-- スライドメニュー -->
+    <nav id="sideMenu">
+        <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">お知らせ</a></li>
+            <li><a href="#">地域イベント</a></li>
+            <li><a href="#">行政手続き</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- Heroスライドショー -->
+        <section class="hero">
+            <a href="page1.html" class="hero-slide">
+                <img src="photo_1.jpg" alt="画像1">
+            </a>
+            <a href="page2.html" class="hero-slide">
+                <img src="photo_2.JPG" alt="画像2">
+            </a>
+            <a href="page3.html" class="hero-slide">
+                <img src="photo_3.JPG" alt="画像3">
+            </a>
+        </section>
+
+        <!-- コンテンツボックス -->
+        <section id="contents" data-step="1">
+            <a href="search.html" class="content-box">
+                <div class="icon">
+                    <img src="icon_1.png" alt="情報を探すアイコン">
+                </div>
+                <div class="text">
+                    <h3>情報を探す</h3>
+                    <p>手続きを知りたい</p>
+                </div>
+                <div class="arrow"></div>
+            </a>
+
+            <a href="page2.html" class="content-box">
+                <div class="icon">
+                    <img src="icon_2.png" alt="お知らせやニュースアイコン">
+                </div>
+                <div class="text">
+                    <h3>お知らせを見る</h3>
+                    <p>好きな情報にたどり着く</p>
+                </div>
+                <div class="arrow"></div>
+            </a>
+
+            <!--             <a href="page3.html" class="content-box">
+                <div class="icon">
+                    <img src="icon_3.png" alt="カスタマイズ">
+                </div>
+                <div class="text">
+                    <h3>カスタマイズする</h3>
+                    <p>好きな情報にたどり着く</p>
+                </div>
+                <div class="arrow"></div>
+            </a> -->
+        </section>
+        <section class="personalize">
+            <!-- トグルリスト -->
+            <div class="toggle-list">
+                <div class="toggle-item">
+                    <div class="toggle-header">カスタマイズをする<span>+</span></div>
+                    <div class="toggle-content">ここに項目1の詳細内容が入ります。
+
+
+                        <div id="form-box" data-step="3" data-intro="ここでは、地域と対象者を選択することで以下のおすすめ情報が見られます">
+                            <div class="form-section">
+                                <label for="region">お住まいの地域</label>
+                                <select id="region">
+                                    <option value="">選択してください</option>
+                                    <option value="東京">東京</option>
+                                    <option value="大阪">大阪</option>
+                                    <option value="北海道">北海道</option>
+                                </select>
+                            </div>
+
+                            <div class="form-section">
+                                <label for="audience">対象者</label>
+                                <select id="audience">
+                                    <option value="">選択してください</option>
+                                    <option value="学生">学生</option>
+                                    <option value="社会人">社会人</option>
+                                    <option value="シニア">シニア</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+        <div id="dynamicContent" data-step="2" data-intro="ここでは、ごみ収集カレンダー、おすすめ情報を見ることができます" style="margin-bottom:20px;">
         </div>
-        <div class="arrow"></div>
-      </a>
 
-      <a href="page2.html" class="content-box">
-        <div class="icon">
-          <img src="icon_2.png" alt="お知らせやニュースアイコン">
-        </div>
-        <div class="text">
-          <h3>お知らせやニュースを見る</h3>
-          <p>好きな情報にたどり着く</p>
-        </div>
-        <div class="arrow"></div>
-      </a>
+        <button id="start-tour" data-step="3" data-intro="このボタンを押すとツアーが開始されます。">
+            ツアー開始
+        </button>
 
-      <a href="page3.html" class="content-box">
-        <div class="icon">
-          <img src="icon_3.png" alt="カスタマイズ">
-        </div>
-        <div class="text">
-          <h3>カスタマイズする</h3>
-          <p>好きな情報にたどり着く</p>
-        </div>
-        <div class="arrow"></div>
-      </a>
-    </section>
-  </main>
+        <div class="yohaku"></div>
+</section>
 
-  <!-- 下部に花を置くエリア -->
-  <div id="flowerBed"
-    style="position: fixed; bottom: 45px; left: 10px; right: 10px; height: 60px; display:flex; gap:5px; align-items:center; z-index:900;">
-    <!-- 花はここにJSで追加 -->
-  </div>
+    </main>
 
-  <!-- 下部固定メニュー -->
-  <nav class="bottom-bar">
-    <a href="index.html" class="bottom-btn">トップページへ</a>
-    <a href="notifications.html" class="bottom-btn">通知オン</a>
-    <a href="contact.html" class="bottom-btn">お問い合わせ</a>
-  </nav>
+    <!-- 下部固定メニュー -->
+    <nav class="bottom-bar">
+        <a href="index.html" class="bottom-btn">トップページへ</a>
+        <a href="notifications.html" class="bottom-btn">通知オン</a>
+        <a href="contact.html" class="bottom-btn">お問い合わせ</a>
+    </nav>
 
-  <script src="script.js"></script>
-  <!-- ------------script------------------------------------ -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const welcomeOverlay = document.getElementById('welcomeOverlay');
-      const welcomeCloseBtn = document.getElementById('welcomeCloseBtn');
+    <!-- script -->
+    <script src="script.js"></script>
+    <!-- Intro.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intro.js/minified/intro.min.js"></script>
 
-      // 初回のみ表示
-      if (!localStorage.getItem('welcomeShown')) {
-        welcomeOverlay.style.display = 'flex';
-      } else {
-        welcomeOverlay.style.display = 'none';
-      }
 
-      welcomeCloseBtn.addEventListener('click', () => {
-        welcomeOverlay.style.display = 'none';
-        localStorage.setItem('welcomeShown', 'true');
+    <script>
+        // ============================================================
+        // 🎯 全体の目的：
+        // 初回訪問 → POPUP回答後にツアー開始
+        // 2回目以降 → POPUPなしで前回の選択を自動反映（ボタンでツアー再開可）
+        // ============================================================
 
-        // チュートリアル開始
-        tutorial.style.display = 'block';
-        overlay.style.display = 'block';
-      });
+        // -------------------------------
+        // 要素取得
+        // -------------------------------
+        const regionSelect = document.getElementById('region');
+        const audienceSelect = document.getElementById('audience');
+        const dynamicContent = document.getElementById('dynamicContent');
 
-      // 花を増やす関数
-      function addFlower() {
-        const flowerBed = document.getElementById('flowerBed');
-        const flower = document.createElement('img');
-        flower.src = 'flower.png';
-        flower.style.width = '50px';
-        flower.style.height = '50px';
-        flower.style.transition = 'transform 0.3s';
-        flower.style.transform = 'scale(0)';
-        flowerBed.appendChild(flower);
-        setTimeout(() => {
-          flower.style.transform = 'scale(1)';
-        }, 10);
+        const popup = document.getElementById('popup');
+        const popupRegion = document.getElementById('popupRegion');
+        const popupAudience = document.getElementById('popupAudience');
+        const popupSubmit = document.getElementById('popupSubmit');
 
-        let count = parseInt(localStorage.getItem('flowerCount') || '0');
-        localStorage.setItem('flowerCount', count + 1);
-      }
+        const startTourBtn = document.getElementById('start-tour');
 
-      // 過去の花を復元
-      const flowerBed = document.getElementById('flowerBed');
-      const count = parseInt(localStorage.getItem('flowerCount') || '0');
-      for (let i = 0; i < count; i++) {
-        const flower = document.createElement('img');
-        flower.src = 'flower.png';
-        flower.style.width = '30px';
-        flower.style.height = '30px';
-        flowerBed.appendChild(flower);
-      }
+        // -------------------------------
+        // 記事データ
+        // -------------------------------
+        const recommendedArticles = {
+            学生: [
+                { title: "学生向け健康法", url: "#" },
+                { title: "勉強効率アップのコツ", url: "#" },
+                { title: "アルバイト情報まとめ", url: "#" }
+            ],
+            社会人: [
+                { title: "仕事効率化ツール", url: "#" },
+                { title: "おすすめ資格情報", url: "#" },
+                { title: "ストレス対策方法", url: "#" }
+            ],
+            シニア: [
+                { title: "健康維持の習慣", url: "#" },
+                { title: "地域イベント情報", url: "#" },
+                { title: "シニア向け趣味紹介", url: "#" }
+            ]
+        };
 
-      // チュートリアル要素
-      const tutorial = document.getElementById('tutorial');
-      const overlay = document.getElementById('tutorialOverlay');
-      const closeBtn = document.getElementById('tutorialClose');
-      const tutorialText = document.getElementById('tutorialText');
-      const pageIndicator = document.querySelector('.page-indicator');
+        // -------------------------------
+        // 前回訪問データを取得
+        // -------------------------------
+        const hasVisited = localStorage.getItem('hasVisited');
+        const savedRegion = localStorage.getItem('selectedRegion');
+        const savedAudience = localStorage.getItem('selectedAudience');
 
-      const contentBoxes = document.querySelectorAll('.content-box');
-      const highlightTargets = Array.from(contentBoxes).slice(0, 3); // 最初の3つだけ
+        // -------------------------------
+        // 初期化処理（ページ読み込み時）
+        // -------------------------------
+        window.addEventListener('load', () => {
+            if (!hasVisited) {
+                // 初回訪問 → POPUPを表示
+                popup.style.display = 'flex';
+            } else {
+                // 2回目以降 → 前回選択を反映
+                if (savedRegion && savedAudience) {
+                    regionSelect.value = savedRegion;
+                    audienceSelect.value = savedAudience;
+                    updateDynamicContent();
+                }
+            }
+        });
 
-      let step = 1;
+        // -------------------------------
+        // POPUP送信時（初回訪問時のみ）
+        // -------------------------------
+        popupSubmit.addEventListener('click', () => {
+            const selectedRegion = popupRegion.value;
+            const selectedAudience = popupAudience.value;
 
-      // 背景暗くするオーバーレイ
-      const dimOverlay = document.createElement('div');
-      dimOverlay.id = 'dimOverlay';
-      document.body.appendChild(dimOverlay);
+            if (!selectedRegion || !selectedAudience) {
+                alert("両方選択してください");
+                return;
+            }
 
-      // 初回表示
-      if (!localStorage.getItem('tutorialShown')) {
-        tutorial.style.display = 'block';
-        overlay.style.display = 'block';
-      }
+            // 選択内容をフォームに反映
+            regionSelect.value = selectedRegion;
+            audienceSelect.value = selectedAudience;
 
-      closeBtn.addEventListener('click', () => {
-        if (step === 1) {
-          step = 2;
-          highlightTargets.forEach(box => box.classList.add('highlight'));
+            // コンテンツ更新
+            updateDynamicContent();
 
-          addFlower();
-        } else {
-          tutorial.style.display = 'none';
-          overlay.style.display = 'none';
-          dimOverlay.style.display = 'none';
-          highlightTargets.forEach(box => box.classList.remove('highlight'));
+            // 保存
+            localStorage.setItem('selectedRegion', selectedRegion);
+            localStorage.setItem('selectedAudience', selectedAudience);
+            localStorage.setItem('hasVisited', 'true'); // 初回訪問済みフラグ
 
-          addFlower();
-          localStorage.setItem('tutorialShown', 'true');
+            // POPUPを閉じる
+            popup.style.display = 'none';
+
+            // 🎯 初回のみツアー開始
+            startTour();
+        });
+
+        // -------------------------------
+        // セレクト変更時：保存＋更新
+        // -------------------------------
+        regionSelect.addEventListener('change', () => {
+            localStorage.setItem('selectedRegion', regionSelect.value);
+            updateDynamicContent();
+        });
+
+        audienceSelect.addEventListener('change', () => {
+            localStorage.setItem('selectedAudience', audienceSelect.value);
+            updateDynamicContent();
+        });
+
+        // -------------------------------
+        // ツアーボタン（2回目以降でも再開可能）
+        // -------------------------------
+        startTourBtn.addEventListener('click', () => {
+            startTour();
+        });
+
+        // -------------------------------
+        // intro.jsツアー関数
+        // -------------------------------
+        function startTour() {
+            introJs()
+                .setOptions({
+                    steps: [
+                        {
+                            element: '#emergency',
+                            intro: 'ここから緊急情報・緊急時の対応を確認できます',
+                            position: 'bottom'
+                        },
+                        {
+                            element: '#contents',
+                            intro: 'ここから目的別で情報を探すことができます',
+                            position: 'top'
+                        },
+                        {
+                            element: '#form-box',
+                            intro: 'ここでは、地域と対象者を選択することでおすすめ情報が見られます',
+                            position: 'right'
+                        },
+                        {
+                            element: '#start-tour',
+                            intro: 'このボタンを押すと、いつでもツアーを再開できます',
+                            position: 'top'
+                        }
+                    ],
+                    showProgress: true,
+                    exitOnOverlayClick: false
+                })
+                .oncomplete(function () {
+                    alert('ツアーが終了しました！');
+                })
+                .start();
         }
-      });
-    });
-  </script>
 
-  <!-- ------------script------------------------------------ -->
+        // -------------------------------
+        // コンテンツ更新関数（記事＋地域）
+        // -------------------------------
+        function updateDynamicContent() {
+            const region = regionSelect.value;
+            const audience = audienceSelect.value;
+
+            // 初期化
+            dynamicContent.innerHTML = "";
+
+            // カードコンテナ
+            const container = document.createElement('div');
+            container.classList.add('recommended-container');
+
+            // ごみ収集カード
+            if (region) {
+                const card = document.createElement('div');
+                card.classList.add('recommended-card');
+                card.innerHTML = `
+        <h4>${region}のごみ収集</h4>
+        <a href="#" target="_blank">カレンダーを見る</a>
+      `;
+                container.appendChild(card);
+            }
+
+            // おすすめ記事カード
+            if (audience && recommendedArticles[audience]) {
+                recommendedArticles[audience].forEach(article => {
+                    const card = document.createElement('div');
+                    card.classList.add('recommended-card');
+                    card.innerHTML = `
+          <h4>${article.title}</h4>
+          <p>記事の簡単な説明をここに入れられます</p>
+          <a href="${article.url}" target="_blank">詳しく見る</a>
+        `;
+                    container.appendChild(card);
+                });
+            }
+
+            // コンテナを追加
+            dynamicContent.appendChild(container);
+        }
+
+        // -------------------------------
+        // ✅ デバッグ用：リセット関数（開発時のみ）
+        // -------------------------------
+        function resetTour() {
+            localStorage.clear();
+            alert('初回状態に戻しました。ページを再読み込みしてください。');
+        }
+
+        // トグルリスト
+        const items = document.querySelectorAll('.toggle-item');
+        const toggleAllBtn = document.getElementById('toggleAll');
+        let allOpen = false;
+
+        // 各トグルクリックで開閉
+        items.forEach(item => {
+            const header = item.querySelector('.toggle-header');
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const span = header.querySelector('span');
+                span.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+    </script>
+
+
+
+
 </body>
-<!-- ウェルカムポップアップ（ここに追記） -->
-<div id="welcomeOverlay"
-  style="position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(255,255,255,0.95); z-index:2000; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; ">
-  <h1 style="font-size:18pt; margin-bottom:15px;">ようこそ札幌市南区へ</h1>
-  <p style="font-size:16pt; margin:30px;">初めてサイトを訪れる方にチュートリアルが出てきます。<br>途中で消すこともできます。<br>チュートリアルを行うといいことがあるかも！
-  </p>
-
-  <!-- 下部の花 -->
-  <div id="welcomeFlowerBed" style="display:flex; gap:10px; justify-content:center;">
-    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease forwards;">
-    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease 0.1s forwards;">
-    <img src="flower.png" alt="花" style="width:50px; height:50px; animation:flowerPop 0.5s ease 0.2s forwards;">
-  </div>
-
-  <button id="welcomeCloseBtn"
-    style="margin-top:30px; padding:12px 24px; font-size:16px; background-color:#2a5d34; color:#fff; border:none; border-radius:8px; cursor:pointer;">OK</button>
-</div>
 
 </html>
-
-<style>
-  @keyframes flowerPop {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  #tutorial {
-    width: 90%;
-    text-align: center;
-  }
-
-  /* === チュートリアル時のオーバーレイ === */
-  #tutorialOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    /* 半透明の黒 */
-    z-index: 999;
-    /* 吹き出しより少し下 */
-    display: none;
-    /* 最初は非表示 */
-  }
-
-  /* 吹き出しを最前面に */
-  .tutorial {
-    position: fixed;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    /* オーバーレイより上 */
-    display: none;
-    text-align: center;
-  }
-
-  /* 吹き出しの枠部分 */
-  .bubble {
-    position: relative;
-    background: #fff;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    padding: 12px 18px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
-    color: #333;
-    max-width: 300px;
-  }
-
-  /* 吹き出しの矢印（下向き） */
-  .bubble::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    /* 吹き出しの下に配置 */
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 10px 10px 0 10px;
-    border-style: solid;
-    border-color: #007bff transparent transparent transparent;
-  }
-
-  /* ページ番号（右下配置） */
-  .page-indicator {
-    position: absolute;
-    bottom: 8px;
-    right: 10px;
-    font-size: 12px;
-    color: #007bff;
-    opacity: 0.8;
-  }
-
-  /* 閉じるボタン */
-  #tutorialClose {
-    margin-top: 8px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 5px 12px;
-    cursor: pointer;
-  }
-
-  #tutorialClose:hover {
-    background: #0056b3;
-  }
-
-  /* === content-boxの強調表示用 === */
-  .highlight {
-    position: relative;
-    z-index: 1001;
-    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.7);
-    transition: box-shadow 0.3s ease;
-  }
-
-  /* 背景を暗くする（吹き出し以外） */
-  #dimOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 998;
-    display: none;
-  }
-
-  /*-------------- 内容 */
-  .content-box .icon img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-  }
-
-  .content-box .text {
-    flex: 1;
-    margin: 0 15px 0 10px;
-  }
-
-  .content-box h3 {
-    font-weight: bold;
-    font-size: 18px;
-    margin: 0 0 7px 0;
-  }
-
-  .content-box p {
-    font-size: 16px;
-    margin: 0;
-  }
-</style>

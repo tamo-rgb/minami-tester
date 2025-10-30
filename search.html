@@ -20,16 +20,8 @@
     <div id="tutorial" class="tutorial">
         <div class="bubble">
             <p>ここでは、さまざまな方法から探すことができます<br>試しに下までスクロールしてみましょう！</p>
-            <span class="page-indicator">[2/4]</span>
+            <span class="page-indicator"></span>
             <button id="tutorialClose">OK</button>
-        </div>
-    </div>
-
-    <!-- スクロール後の吹き出し -->
-    <div id="scrollTutorial" class="tutorial" style="display:none;">
-        <div class="bubble">
-            <p>いいですね！その調子で情報を探してみましょう🎉</p>
-            <button id="scrollClose">閉じる</button>
         </div>
     </div>
 
@@ -59,15 +51,13 @@
 
     <!-- メインコンテンツ -->
     <main>
-        <section class="yohaku">
-        </section>
-
         <!-- パンくずリスト -->
         <nav class="breadcrumb">
             <a href="index.html">ホームページ</a> ＞ <span>情報を探す</span>
         </nav>
 
-        <section class="section">
+
+        <section class="section" id="s_1">
             <h3 class="omidashi">カテゴリーから探す</h3>
             <div class="grid">
                 <a href="category/gyosei.html" class="card">
@@ -115,7 +105,7 @@
                 </a>
             </div>
         </section>
-        <section class="section">
+        <section class="section" id="s_2">
             <h3 class="omidashi">対象者から探す</h3>
             <div class="grid_target">
                 <a href="index.html" class="card">
@@ -144,7 +134,7 @@
                 </a>
             </div>
         </section>
-        <section class="section">
+        <section class="section"id="s_3">
             <h3 class="omidashi">できごとから探す</h3>
             <div class="grid_event">
                 <a href="index.html" class="card">
@@ -185,7 +175,7 @@
                 </a>
             </div>
         </section>
-        <section class="section">
+        <section class="section" id="s_4">
             <h3 class="omidashi">どこかわからないとき</h3>
             <div class="grid_chat">
                 <a href="index.html" class="card">
@@ -311,8 +301,8 @@
         padding: 12px 18px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         font-size: 14px;
+        margin: 0px 15px;
         color: #333;
-        max-width: 300px;
     }
 
     /* 吹き出しの矢印（下向き） */
@@ -386,7 +376,7 @@
     /* ===== パンくずリスト ===== */
     .breadcrumb {
         font-size: 13px;
-        margin: 10px 0 0 20px;
+        margin: 70px 0 0 20px;
         color: #555;
     }
 
@@ -404,6 +394,7 @@
     .breadcrumb span {
         color: #333;
     }
+
 
 
     /* 各ページパーツ */
