@@ -6,259 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>札幌市南区</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap" rel="stylesheet">
-</head>
 
-<body>
-    <!-- スクロール進捗バー -->
-    <div id="scrollProgress"></div>
-
-    <!-- チュートリアル用オーバーレイ -->
-    <div id="tutorialOverlay"></div>
-
-    <!-- チュートリアル吹き出し -->
-    <div id="tutorial" class="tutorial">
-        <div class="bubble">
-            <p>ここでは、さまざまな方法から探すことができます<br>試しに下までスクロールしてみましょう！</p>
-            <span class="page-indicator"></span>
-            <button id="tutorialClose">OK</button>
-        </div>
-    </div>
-
-
-    <!-- ヘッダー -->
-    <header>
-        <div class="logo">南区</div>
-        <div class="header-right">
-            <a href="#emergency" class="content">緊急情報</a>
-            <div class="menu-toggle" id="menuToggle">
-                <div class="hamburger"></div>
-                <span>メニュー</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- スライドメニュー -->
-    <nav id="sideMenu">
-        <ul>
-            <li><a href="#">ホーム</a></li>
-            <li><a href="#">お知らせ</a></li>
-            <li><a href="#">地域イベント</a></li>
-            <li><a href="#">行政手続き</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-        </ul>
-    </nav>
-
-    <!-- メインコンテンツ -->
-    <main>
-        <!-- パンくずリスト -->
-        <nav class="breadcrumb">
-            <a href="index.html">ホームページ</a> ＞ <span>情報を探す</span>
-        </nav>
-
-
-        <section class="section" id="s_1">
-            <h3 class="omidashi">カテゴリーから探す</h3>
-            <div class="grid">
-                <a href="category/gyosei.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>行政/手続き</h3>
-                    <p>住民票/税金/選挙</p>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>防災・安全</h3>
-                    <p>避難所・災害情報</p>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>子育て・教育</h3>
-                    <p>保育園情報/習い事</p>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>健康・福祉</h3>
-                    <p>予防接種/高齢者福祉</p>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>まちづくり</h3>
-                    <p>施設/町内会</p>
-                </a>
-
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>暮らし・文化</h3>
-                    <p>ゴミ出し/地域イベント</p>
-                </a>
-            </div>
-        </section>
-        <section class="section" id="s_2">
-            <h3 class="omidashi">対象者から探す</h3>
-            <div class="grid_target">
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>事業者</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>高齢者介護</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>障がい者</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>観光者</h3>
-                </a>
-            </div>
-        </section>
-        <section class="section"id="s_3">
-            <h3 class="omidashi">できごとから探す</h3>
-            <div class="grid_event">
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>引っ越し</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>結婚</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>離婚</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>妊娠・出産</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>就職・退職</h3>
-                </a>
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_2.png" alt="健康アイコン">
-                    </div>
-                    <h3>おくやみ</h3>
-                </a>
-            </div>
-        </section>
-        <section class="section" id="s_4">
-            <h3 class="omidashi">どこかわからないとき</h3>
-            <div class="grid_chat">
-                <a href="index.html" class="card">
-                    <div class="card-icon">
-                        <img src="icon_1.png" alt="手続きアイコン">
-                    </div>
-                    <h3>チャットボットが対応します</h3>
-                </a>
-            </div>
-        </section>
-
-
-        <section class="yohaku">
-        </section>
-
-    </main>
-
-    <!-- 下部固定メニュー -->
-    <nav class="bottom-bar">
-        <nav class="bottom-bar">
-            <a href="index.html" class="bottom-btn">トップページへ</a>
-            <a href="notifications.html" class="bottom-btn">通知オン</a>
-            <a href="contact.html" class="bottom-btn">お問い合わせ</a>
-        </nav>
-    </nav>
-
-    <script src="script.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const tutorial = document.getElementById('tutorial');
-            const overlay = document.getElementById('tutorialOverlay');
-            const closeBtn = document.getElementById('tutorialClose');
-            const dimOverlay = document.getElementById('dimOverlay') || (() => {
-                const el = document.createElement('div');
-                el.id = 'dimOverlay';
-                document.body.appendChild(el);
-                return el;
-            })();
-
-            // スクロール後の吹き出し
-            const scrollTutorial = document.getElementById('scrollTutorial');
-            const scrollClose = document.getElementById('scrollClose');
-
-            // チュートリアル初回表示
-            if (!localStorage.getItem('tutorialShown')) {
-                tutorial.style.display = 'block';
-                overlay.style.display = 'block';
-            }
-
-            // OKボタンクリックでチュートリアル終了
-            closeBtn.addEventListener('click', () => {
-                tutorial.style.display = 'none';
-                overlay.style.display = 'none';
-                dimOverlay.style.display = 'none';
-                localStorage.setItem('tutorialShown', 'true');
-
-                // スクロール監視開始
-                window.addEventListener('scroll', onScroll);
-            });
-
-            function onScroll() {
-                // ページの下までスクロールしたか判定
-                if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-                    // スクロール完了時に吹き出し表示
-                    scrollTutorial.style.display = 'block';
-                    dimOverlay.style.display = 'block';
-
-                    // もう一度表示されないようにスクロールイベントを削除
-                    window.removeEventListener('scroll', onScroll);
-                }
-            }
-
-            scrollClose.addEventListener('click', () => {
-                scrollTutorial.style.display = 'none';
-                dimOverlay.style.display = 'none';
-            });
-        });
-
-    </script>
-</body>
-
-</html>
-<style>
+    <style>
     #tutorial {
         width: 100%;
         text-align: center;
@@ -433,7 +182,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         /* ← 3列に変更 */
-        gap: 7px;
+        gap: 10px;
         /* カードの間隔 */
         margin: 5px 0px 5px 0px;
     }
@@ -442,9 +191,23 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         /* ← 3列に変更 */
-        gap: 7px;
+        gap: 10px;
         /* カードの間隔 */
         margin: 10px 0px 10px 0px;
+    }
+    #s_1 .card{
+        background-color:#d6f6c9;
+
+    }
+    #s_2 .card{
+        background-color:#fdf7a5;
+        justify-content: center; 
+    }
+    #s_3 .card{
+        background-color:#fff1c5;
+    }
+    #s_4 .card{
+        background-color:#ffe7c5;
     }
 
     .grid_target .card h3 {
@@ -456,7 +219,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         /* ← 3列に変更 */
-        gap: 7px;
+        gap: 10px;
         /* カードの間隔 */
         margin: 10px 0px 10px 0px;
     }
@@ -473,10 +236,9 @@
         /* 縦並び */
         align-items: center;
         /* 中央揃え */
-        background: #fff;
         border-radius: 10px;
         padding: 7px;
-        border: 1px solid #d4e9d4;
+        border:1px #247627;
         box-shadow: 0 1px 2px rgba(10, 10, 10, 0.04);
         text-decoration: none;
         color: inherit;
@@ -484,20 +246,21 @@
     }
 
     .card-icon img {
+        padding-top:5px;
         width: 30px;
         height: 30px;
     }
 
     .card h3 {
         font-size: 18px;
-        color: #2e8b57;
+        color: #247627;
         margin: 4px 0 8px 0;
         text-align: center;
     }
 
     .card p {
         font-size: 12px;
-        color: #555;
+        color: #393939;
         text-align: center;
     }
 
@@ -513,3 +276,242 @@
         margin-bottom: 10px;
     }
 </style>
+</head>
+
+<body>
+    <!-- スクロール進捗バー -->
+    <div id="scrollProgress"></div>
+
+    <!-- チュートリアル用オーバーレイ -->
+    <div id="tutorialOverlay"></div>
+
+    <!-- チュートリアル吹き出し -->
+    <div id="tutorial" class="tutorial">
+        <div class="bubble">
+            <p>ここでは、さまざまな方法から探すことができます<br>試しに下までスクロールしてみましょう！</p>
+            <span class="page-indicator"></span>
+            <button id="tutorialClose">OK</button>
+        </div>
+    </div>
+
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">南区</div>
+        <div class="header-right">
+            <a href="#emergency" class="content">緊急情報</a>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="hamburger"></div>
+                <span>メニュー</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- スライドメニュー -->
+    <nav id="sideMenu">
+        <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">お知らせ</a></li>
+            <li><a href="#">地域イベント</a></li>
+            <li><a href="#">行政手続き</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="index.html">ホームページ</a> ＞ <span>情報を探す</span>
+        </nav>
+
+
+        <section class="section" id="s_1">
+            <h3 class="omidashi">カテゴリーから探す</h3>
+            <div class="grid">
+                <a href="category/gyosei.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_1.png" alt="手続きアイコン">
+                    </div>
+                    <h3>行政・手続き</h3>
+                    <p>住民票/税金/選挙</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_2.png" alt="健康アイコン">
+                    </div>
+                    <h3>防災・安全</h3>
+                    <p>避難所・災害情報</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_3.png" alt="手続きアイコン">
+                    </div>
+                    <h3>子育て・教育</h3>
+                    <p>保育園情報/習い事</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_4.png" alt="健康アイコン">
+                    </div>
+                    <h3>健康・福祉</h3>
+                    <p>予防接種/高齢者福祉</p>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_5.png" alt="健康アイコン">
+                    </div>
+                    <h3>町・暮らし</h3>
+                    <p>施設/町内会/ゴミ出し</p>
+                </a>
+
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_6.png" alt="健康アイコン">
+                    </div>
+                    <h3>文化・イベント</h3>
+                    <p>観光地/地域イベント</p>
+                </a>
+            </div>
+        </section>
+        <section class="section" id="s_2">
+            <h3 class="omidashi">対象者から探す</h3>
+            <div class="grid_target">
+                <a href="index.html" class="card">
+                    <h3>事業者</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <h3>高齢者<br>介護</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <h3>障がい者</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <h3>観光者</h3>
+                </a>
+            </div>
+        </section>
+        <section class="section"id="s_3">
+            <h3 class="omidashi">できごとから探す</h3>
+            <div class="grid_event">
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_7.png" alt="手続きアイコン">
+                    </div>
+                    <h3>引っ越し</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_8.png" alt="健康アイコン">
+                    </div>
+                    <h3>結婚</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_9.png" alt="健康アイコン">
+                    </div>
+                    <h3>離婚</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_10.png" alt="手続きアイコン">
+                    </div>
+                    <h3>妊娠・出産</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_11.png" alt="手続きアイコン">
+                    </div>
+                    <h3>就職・退職</h3>
+                </a>
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="data/search_12.png" alt="健康アイコン">
+                    </div>
+                    <h3>おくやみ</h3>
+                </a>
+            </div>
+        </section>
+        <section class="section" id="s_4">
+            <h3 class="omidashi">どこかわからないとき</h3>
+            <div class="grid_chat">
+                <a href="index.html" class="card">
+                    <div class="card-icon">
+                        <img src="icon_1.png" alt="手続きアイコン">
+                    </div>
+                    <h3>チャットボットが対応します</h3>
+                </a>
+            </div>
+        </section>
+
+
+        <section class="yohaku">
+        </section>
+
+    </main>
+
+    <!-- 下部固定メニュー -->
+    <nav class="bottom-bar">
+        <nav class="bottom-bar">
+            <a href="index.html" class="bottom-btn">トップページへ</a>
+            <a href="notifications.html" class="bottom-btn">通知オン</a>
+            <a href="contact.html" class="bottom-btn">お問い合わせ</a>
+        </nav>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const tutorial = document.getElementById('tutorial');
+            const overlay = document.getElementById('tutorialOverlay');
+            const closeBtn = document.getElementById('tutorialClose');
+            const dimOverlay = document.getElementById('dimOverlay') || (() => {
+                const el = document.createElement('div');
+                el.id = 'dimOverlay';
+                document.body.appendChild(el);
+                return el;
+            })();
+
+            // スクロール後の吹き出し
+            const scrollTutorial = document.getElementById('scrollTutorial');
+            const scrollClose = document.getElementById('scrollClose');
+
+            // チュートリアル初回表示
+            if (!localStorage.getItem('tutorialShown')) {
+                tutorial.style.display = 'block';
+                overlay.style.display = 'block';
+            }
+
+            // OKボタンクリックでチュートリアル終了
+            closeBtn.addEventListener('click', () => {
+                tutorial.style.display = 'none';
+                overlay.style.display = 'none';
+                dimOverlay.style.display = 'none';
+                localStorage.setItem('tutorialShown', 'true');
+
+                // スクロール監視開始
+                window.addEventListener('scroll', onScroll);
+            });
+
+            function onScroll() {
+                // ページの下までスクロールしたか判定
+                if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+                    // スクロール完了時に吹き出し表示
+                    scrollTutorial.style.display = 'block';
+                    dimOverlay.style.display = 'block';
+
+                    // もう一度表示されないようにスクロールイベントを削除
+                    window.removeEventListener('scroll', onScroll);
+                }
+            }
+
+            scrollClose.addEventListener('click', () => {
+                scrollTutorial.style.display = 'none';
+                dimOverlay.style.display = 'none';
+            });
+        });
+
+    </script>
+</body>
+
+</html>

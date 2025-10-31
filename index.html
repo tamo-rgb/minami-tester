@@ -24,12 +24,35 @@
 
         .popup-content {
             background: #fff;
-            padding: 40px;
+            margin: auto 30px;
+            padding: 20px 40px;
             border-radius: 15px;
             width: 80%;
             flex-direction: column;
             text-align: center;
             position: relative;
+        }
+
+        .popup-content h3 {
+            font-size: 26px;
+        }
+
+        .popup-content .popup-question {
+            display: flex;
+            text-align: left;
+            align-items: left;
+            margin-bottom: 15px;
+        }
+
+        #popupSubmit {
+            padding: 15px 40px;
+            cursor: pointer;
+            background: #247627;
+            font-weight: bold;
+            font-size: 16px;
+            color: #f5f8fb;
+            border: #247627;
+            border-radius: 50px;
         }
 
         .form-section {
@@ -48,7 +71,8 @@
 
         label {
             font-weight: bold;
-            color:#333;
+            color: #333;
+            padding-right: 10px;
         }
 
         select {
@@ -119,27 +143,38 @@
         }
 
         .personalize {
-            padding: 20px;
+            margin: 20px;
+            padding: 10px;
             background-color: #C5EFC6;
             color: #fff;
+            border-radius: 15px;
+            ;
         }
 
         #form-box {
             gap: 30px;
         }
 
+
         .recommended-container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 4px;
+            /* カード間の隙間 */
+            align-items: stretch;
+            /* 高さを揃える */
         }
 
         .recommended-card {
             background: #f5f8fb;
+            justify-content: center;
             padding: 20px;
             border-radius: 15px;
             margin: 7px;
             text-align: center;
+            flex: 0 0 calc(50% - 14px);
+            /* 横幅固定 50% */
+            box-sizing: border-box;
         }
 
         .recommended-card h4 {
@@ -176,7 +211,7 @@
 
         /* トグルリスト */
         .toggle-list {
-            margin-bottom:20px;
+            margin-bottom: 20px;
             border-radius: 12px;
             overflow: hidden;
             text-align: center;
@@ -194,11 +229,12 @@
             cursor: pointer;
             background: #247627;
             font-weight: bold;
-            font-size:20px;
+            font-size: 20px;
         }
 
-        .toggle-header span{
-            margin-left: auto; /* 左側のテキストから自動で離す */
+        .toggle-header span {
+            margin-left: auto;
+            /* 左側のテキストから自動で離す */
         }
 
         .toggle-header:hover {
@@ -214,6 +250,21 @@
         .toggle-item.active .toggle-content {
             display: block;
         }
+
+        #start-tour {
+            padding: 15px 40px;
+            cursor: pointer;
+            background: #247627;
+            font-weight: bold;
+            font-size: 16px;
+            color: #f5f8fb;
+            border: #247627;
+            border-radius: 50px;
+        }
+
+        .page-bottom {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -225,26 +276,26 @@
     <!-- ポップアップ -->
     <div id="popup" style="display:none;">
         <div class="popup-content">
-            <h3>はじめに質問です</h3>
+            <h3>札幌市南区へ<br>ようこそ</h3>
 
             <div class="popup-question">
                 <label>お住まいの地域</label>
                 <select id="popupRegion">
-                    <option value="">選択する</option>
-                    <option value="東京">東京</option>
-                    <option value="大阪">大阪</option>
-                    <option value="北海道">北海道</option>
+                    <option value="なし">なし</option>
+                    <option value="澄川">澄川</option>
+                    <option value="真駒内">真駒内</option>
+                    <option value="滝野">滝野</option>
                 </select>
             </div>
 
             <div class="popup-question">
                 <label>対象者</label>
                 <select id="popupAudience">
-                    <option value="">選択する</option>
-                    <option value="学生">学生</option>
-                    <option value="社会人">社会人</option>
+                    <option value="一般">一般</option>
+                    <option value="一人暮らし">一人暮らし</option>
+                    <option value="事業者">事業者</option>
+                    <option value="子育て">子育て</option>
                     <option value="シニア">シニア</option>
-                    <option value="一般">特になし</option>
                 </select>
             </div>
 
@@ -296,7 +347,7 @@
         <section id="contents" data-step="1">
             <a href="search.html" class="content-box">
                 <div class="icon">
-                    <img src="icon_1.png" alt="情報を探すアイコン">
+                    <img src="data/home_1.png" alt="情報を探すアイコン">
                 </div>
                 <div class="text">
                     <h3>情報を探す</h3>
@@ -307,7 +358,7 @@
 
             <a href="page2.html" class="content-box">
                 <div class="icon">
-                    <img src="icon_2.png" alt="お知らせやニュースアイコン">
+                    <img src="data/home_2.png" alt="お知らせやニュースアイコン">
                 </div>
                 <div class="text">
                     <h3>お知らせを見る</h3>
@@ -332,7 +383,7 @@
             <div class="toggle-list">
                 <div class="toggle-item">
                     <div id="nav-toggle">
-                    <div class="toggle-header">カスタマイズをする<span>+</span></div>
+                        <div class="toggle-header">カスタマイズをする<span>+</span></div>
                     </div>
                     <div class="toggle-content">ここに項目1の詳細内容が入ります。
 
@@ -341,19 +392,20 @@
                             <div class="form-section">
                                 <label for="region">お住まいの地域</label>
                                 <select id="region">
-                                    <option value="">選択してください</option>
-                                    <option value="東京">東京</option>
-                                    <option value="大阪">大阪</option>
-                                    <option value="北海道">北海道</option>
+                                    <option value="">未設定</option>
+                                    <option value="澄川">澄川</option>
+                                    <option value="真駒内">真駒内</option>
+                                    <option value="滝野">滝野</option>
                                 </select>
                             </div>
 
                             <div class="form-section">
                                 <label for="audience">対象者</label>
                                 <select id="audience">
-                                    <option value="">選択してください</option>
-                                    <option value="学生">学生</option>
-                                    <option value="社会人">社会人</option>
+                                    <option value="一般">一般</option>
+                                    <option value="一人暮らし">一人暮らし</option>
+                                    <option value="事業者">事業者</option>
+                                    <option value="子育て">子育て</option>
                                     <option value="シニア">シニア</option>
                                 </select>
                             </div>
@@ -361,17 +413,24 @@
                     </div>
                 </div>
             </div>
-        
 
-        <div id="dynamicContent" data-step="2" data-intro="ここでは、ごみ収集カレンダー、おすすめ情報を見ることができます" style="margin-bottom:20px;">
-        </div>
 
-        <button id="start-tour" data-step="3" data-intro="このボタンを押すとツアーが開始されます。">
-            ツアー開始
-        </button>
+            <div id="dynamicContent" data-step="2" data-intro="ここでは、ごみ収集カレンダー、おすすめ情報を見ることができます"
+                style="margin-bottom:20px;">
+            </div>
+        </section>
+        <section class="page-bottom">
+            <button id="start-tour" data-step="3" data-intro="このボタンを押すとツアーが開始されます。">
+                ガイド開始
+            </button>
+            <footer>
+                <p>&copy; 2025 An All rights reserved.</p>
+            </footer>
 
-        <div class="yohaku"></div>
-</section>
+
+            <div class="yohaku"></div>
+        </section>
+
 
     </main>
 
@@ -413,22 +472,44 @@
         // 記事データ
         // -------------------------------
         const recommendedArticles = {
-            学生: [
-                { title: "学生向け健康法", url: "#" },
+            一般: [
+                { title: "簡単に証明書発行をするコツ", url: "#" },
+                { title: "国民健康保険料の夜間納付相談のお知らせ", url: "https://www.city.sapporo.jp/minami/hoken/yakannofusodan.html" },
+                { title: "南区役所食堂営業再開のお知らせ", url: "https://www.city.sapporo.jp/minami/oshirase/20251020shokudo.html" }
+            ],
+            一人暮らし: [
+                { title: "", url: "" },
                 { title: "勉強効率アップのコツ", url: "#" },
                 { title: "アルバイト情報まとめ", url: "#" }
             ],
-            社会人: [
+            事業者: [
                 { title: "仕事効率化ツール", url: "#" },
                 { title: "おすすめ資格情報", url: "#" },
                 { title: "ストレス対策方法", url: "#" }
             ],
             シニア: [
-                { title: "健康維持の習慣", url: "#" },
-                { title: "地域イベント情報", url: "#" },
-                { title: "シニア向け趣味紹介", url: "#" }
+                { title: "紅葉ウオーキング大会", url: "https://www.city.sapporo.jp/minami/news/202510/20251018.html" },
+                { title: "熟年者ふれあい交流会", url: "https://www.city.sapporo.jp/minami/news/202510/20251015-2.html" },
+                { title: "南区の認知症への取組", url: "https://www.city.sapporo.jp/minami/fukushi/nintisyoumap.html" }
             ]
         };
+        const calendarPages = {
+            澄川: "calendar_sumikawa.html",
+            真駒内: "calendar_makomau.html",
+            滝野: "calendar_takino.html"
+        };
+        const nearbyFacilities = {
+            澄川: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            真駒内: [
+                { name: "真駒内の近くの施設", url: "facility_makomanai_gym.html" },
+            ],
+            滝野: [
+                { name: "滝野の近くの施設", url: "facility_takino_center.html" }
+            ]
+        };
+
 
         // -------------------------------
         // 前回訪問データを取得
@@ -524,12 +605,12 @@
                         },
                         {
                             element: '#nav-toggle',
-                            intro: 'ここでは、地域と対象者を選択することでおすすめ情報が見られます',
+                            intro: 'ここでは、おすすめ情報がカスタマイズできます！<br>ボタンを押して設定画面を開けます！',
                             position: 'right'
                         },
                         {
                             element: '#start-tour',
-                            intro: 'このボタンを押すと、いつでもツアーを再開できます',
+                            intro: 'このボタンを押すと、今のガイドを見れます',
                             position: 'top'
                         }
                     ],
@@ -549,41 +630,60 @@
             const region = regionSelect.value;
             const audience = audienceSelect.value;
 
-            // 初期化
             dynamicContent.innerHTML = "";
 
-            // カードコンテナ
-            const container = document.createElement('div');
-            container.classList.add('recommended-container');
+            // ごみ＋施設カード用コンテナ（横並び）
+            const mainContainer = document.createElement('div');
+            mainContainer.classList.add('recommended-container');
 
             // ごみ収集カード
             if (region) {
                 const card = document.createElement('div');
                 card.classList.add('recommended-card');
                 card.innerHTML = `
-        <h4>${region}のごみ収集</h4>
-        <a href="#" target="_blank">カレンダーを見る</a>
-      `;
-                container.appendChild(card);
+            <h4>${region}のごみ収集</h4>
+            <a href="${calendarPages[region]}" target="_blank">カレンダーを見る</a>
+        `;
+                mainContainer.appendChild(card);
             }
 
-            // おすすめ記事カード
+            // 施設カード
+            if (region && nearbyFacilities[region]) {
+                nearbyFacilities[region].forEach(facility => {
+                    const card = document.createElement('div');
+                    card.classList.add('recommended-card');
+                    card.innerHTML = `
+                <h4>${facility.name}</h4>
+                <a href="${facility.url}" target="_blank">詳細を見る</a>
+            `;
+                    mainContainer.appendChild(card);
+                });
+            }
+
+            // 横並びのコンテナを追加
+            dynamicContent.appendChild(mainContainer);
+
+            // おすすめ記事カードは別コンテナ（縦並び）
             if (audience && recommendedArticles[audience]) {
+                const articleContainer = document.createElement('div');
+                articleContainer.classList.add('recommended-container');
+                articleContainer.style.flexDirection = 'column'; // 縦並びに変更
+
                 recommendedArticles[audience].forEach(article => {
                     const card = document.createElement('div');
                     card.classList.add('recommended-card');
                     card.innerHTML = `
-          <h4>${article.title}</h4>
-          <p>記事の簡単な説明をここに入れられます</p>
-          <a href="${article.url}" target="_blank">詳しく見る</a>
-        `;
-                    container.appendChild(card);
+                <h4>${article.title}</h4>
+                <p>記事の簡単な説明をここに入れられます</p>
+                <a href="${article.url}" target="_blank">詳しく見る</a>
+            `;
+                    articleContainer.appendChild(card);
                 });
-            }
 
-            // コンテナを追加
-            dynamicContent.appendChild(container);
+                dynamicContent.appendChild(articleContainer);
+            }
         }
+
 
         // -------------------------------
         // ✅ デバッグ用：リセット関数（開発時のみ）
