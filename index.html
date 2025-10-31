@@ -35,6 +35,7 @@
 
         .popup-content h3 {
             font-size: 26px;
+            margin: 0px 0px 0px 15px;
         }
 
         .popup-content .popup-question {
@@ -55,11 +56,6 @@
             border-radius: 50px;
         }
 
-        .form-section {
-            display: flex;
-            /* ラベルとselectを横並び */
-        }
-
         .form-row {
             display: flex;
             /* 横並び */
@@ -72,13 +68,24 @@
         label {
             font-weight: bold;
             color: #333;
-            padding-right: 10px;
         }
 
         select {
-            width: 80px;
-            padding: 5px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 10px 40px 10px 12px;
+            /* 左パディングを広めに、右に矢印用スペース */
             font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6H0z' fill='%23333'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px 6px;
+            cursor: pointer;
+            transition: border 0.3s, box-shadow 0.3s;
         }
 
         #result {
@@ -88,13 +95,21 @@
             color: #333;
         }
 
+        .popup-line {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
 
         .popup-question {
             display: flex;
-            text-align: left;
-            align-items: left;
-            margin-bottom: 10px;
+            flex-direction: column;
+            /* ラベルとselectを縦並びに */
+            gap: 5px;
+            /* ラベルとselectの間隔 */
         }
+
 
         .progress-container {
             width: 100%;
@@ -153,6 +168,7 @@
 
         #form-box {
             gap: 30px;
+            display: flex;
         }
 
 
@@ -241,10 +257,17 @@
             background: #4e8e50;
         }
 
+        .toggle-content>*:first-child {
+            margin-top: 0 !important;
+        }
+
+
         .toggle-content {
             display: none;
-            padding: 0px 30px 20px 30px;
-            background: #fff;
+            padding: 10px 15px;
+            background: #ffffff;
+            overflow: hidden;
+            /* ←これを追加！ */
         }
 
         .toggle-item.active .toggle-content {
@@ -277,29 +300,30 @@
     <div id="popup" style="display:none;">
         <div class="popup-content">
             <h3>札幌市南区へ<br>ようこそ</h3>
+            <div class="popup-line">
+                <div class="popup-question">
+                    <label>お住まい</label>
+                    <select id="popupRegion">
+                        <option value="なし">なし</option>
+                        <option value="澄川">澄川</option>
+                        <option value="真駒内">真駒内</option>
+                        <option value="滝野">滝野</option>
+                    </select>
+                </div>
 
-            <div class="popup-question">
-                <label>お住まいの地域</label>
-                <select id="popupRegion">
-                    <option value="なし">なし</option>
-                    <option value="澄川">澄川</option>
-                    <option value="真駒内">真駒内</option>
-                    <option value="滝野">滝野</option>
-                </select>
+                <div class="popup-question">
+                    <label>あなたの立場</label>
+                    <select id="popupAudience">
+                        <option value="一般">一般</option>
+                        <option value="一人暮らし">一人暮らし</option>
+                        <option value="事業者">事業者</option>
+                        <option value="子育て">子育て</option>
+                        <option value="シニア">シニア</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="popup-question">
-                <label>対象者</label>
-                <select id="popupAudience">
-                    <option value="一般">一般</option>
-                    <option value="一人暮らし">一人暮らし</option>
-                    <option value="事業者">事業者</option>
-                    <option value="子育て">子育て</option>
-                    <option value="シニア">シニア</option>
-                </select>
-            </div>
-
-            <button id="popupSubmit">完了</button>
+            <button id="popupSubmit">サイトを見る</button>
         </div>
     </div>
 
@@ -385,14 +409,12 @@
                     <div id="nav-toggle">
                         <div class="toggle-header">カスタマイズをする<span>+</span></div>
                     </div>
-                    <div class="toggle-content">ここに項目1の詳細内容が入ります。
-
-
-                        <div id="form-box" data-step="3" data-intro="ここでは、地域と対象者を選択することで以下のおすすめ情報が見られます">
+                    <div class="toggle-content">
+                        <div id="form-box" data-step="3" data-intro="ここでは、地域とあなたの立場を選択することで以下のおすすめ情報が見られます">
                             <div class="form-section">
-                                <label for="region">お住まいの地域</label>
+                                <label for="region">お住まい</label>
                                 <select id="region">
-                                    <option value="">未設定</option>
+                                    <option value="なし">なし</option>
                                     <option value="澄川">澄川</option>
                                     <option value="真駒内">真駒内</option>
                                     <option value="滝野">滝野</option>
@@ -400,7 +422,7 @@
                             </div>
 
                             <div class="form-section">
-                                <label for="audience">対象者</label>
+                                <label for="audience">あなたの立場</label>
                                 <select id="audience">
                                     <option value="一般">一般</option>
                                     <option value="一人暮らし">一人暮らし</option>
@@ -536,6 +558,16 @@
         });
 
         // -------------------------------
+        // POPUPの選択時、南区以外/なしを内部的に'なし'に統一
+        // -------------------------------
+        popupRegion.addEventListener('change', () => {
+            // optionのvalueはすでに 'なし' なので基本は不要ですが、念のため
+            if (popupRegion.value === "なし") {
+                popupRegion.value = "なし";
+            }
+        });
+
+        // -------------------------------
         // POPUP送信時（初回訪問時のみ）
         // -------------------------------
         popupSubmit.addEventListener('click', () => {
@@ -637,7 +669,7 @@
             mainContainer.classList.add('recommended-container');
 
             // ごみ収集カード
-            if (region) {
+            if (region && region !== "なし") {
                 const card = document.createElement('div');
                 card.classList.add('recommended-card');
                 card.innerHTML = `
