@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市町村サイト - 緊急情報</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
+            font-size: 16px;
+            background: #f9f9f9;
+            color: #333;
+            padding-bottom: 70px;
+        }
+
+
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-right a {
+            color: rgb(72, 72, 72);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ナビ */
+        nav {
+            position: fixed;
+            top: 50px;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            padding-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        nav.open {
+            right: 0;
+        }
+
+        /* メイン */
+        main {
+            padding: 70px 20px 20px 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #c62828;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        #updateTime {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* 緊急カード */
+        .alert-card {
+            background: #fff;
+            border-left: 6px solid #c62828;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-card h2 {
+            color: #c62828;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .alert-card p {
+            font-size: 15px;
+        }
+
+        /* 避難所マップボタン */
+        .map-button {
+            display: block;
+            width: 90%;
+            max-width: 400px;
+            margin: 25px auto;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 800;
+            background: #43a047;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-button:hover {
+            background: #388e3c;
+        }
+
+        /* 連絡先 */
+        .contact-section {
+            margin-top: 30px;
+        }
+
+        .contact-section h2 {
+            font-size: 18pt;
+            color: #0073e6;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #0073e6;
+            padding-bottom: 5px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-list li strong {
+            display: block;
+            color: #0073e6;
+            font-size: 16px;
+        }
+
+        /* SNSリンク */
+        .sns {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .sns a {
+            display: inline-block;
+            background: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 5px;
+        }
+
+        /* 下部固定バー */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .bottom-bar button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media(min-width:768px) {
+            header {
+                padding: 15px 40px;
+            }
+
+            .bottom-bar {
+                display: none;
+            }
+
+            nav {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">みなみく</div>
+        <div class="header-right">
+            <div class="menu-toggle">☰</div>
+        </div>
+    </header>
+
+    <nav id="sideMenu">
+        <ul>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="find.html">探す</a></li>
+            <li><a href="#">お知らせ</a></li>
+            <li><a href="#">行政サービス</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>現在の緊急情報</h1>
+        <div id="updateTime"></div>
+
+        <div class="alert-card">
+            <h2>避難情報（警戒レベル4）</h2>
+            <p>○○地区・△△地区で避難指示が発令されています。近くの避難所に速やかに避難してください。</p>
+        </div>
+
+        <div class="alert-card">
+            <h2>交通情報</h2>
+            <p>主要道路で通行止めがあります。最新情報をご確認ください。</p>
+        </div>
+
+        <!-- 避難所マップボタン -->
+        <a href="https://bousai.city.sapporo.jp/?p=evacuation%2Fshelter&l=16-0%2C17-0%2C18-0%2C19-0%2C20-0%2C21-0&ll=43.0686606%2C141.34856659999997&z=12&municipalityCd=011002" class="map-button">避難所マップを開く</a>
+
+        <div class="contact-section">
+    
+            <ul class="contact-list">
+                <li><strong>警察：</strong> 110</li>
+                <li><strong>消防・救急：</strong> 119</li>
+                <li><strong>市役所災害対策本部：</strong> 000-123-4567</li>
+                <li><strong>災害情報ダイヤル：</strong> 171</li>
+            </ul>
+        </div>
+
+        <div class="sns">
+            <a href="#">公式Twitter</a>
+            <a href="#">防災情報サイト</a>
+        </div>
+    </main>
+
+    <div class="bottom-bar">
+        <button onclick="window.scrollTo({ top:0, behavior:'smooth'})">ページトップへ</button>
+        <button onclick="location.href='index.html'">トップへ戻る</button>
+        <button>お問い合わせ</button>
+    </div>
+
+    <script>
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('sideMenu');
+        toggle.addEventListener('click', () => nav.classList.toggle('open'));
+
+        // 更新日時の自動表示
+        const updateTime = document.getElementById('updateTime');
+        const now = new Date();
+        const formatted = now.toLocaleString('ja-JP', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        updateTime.textContent = `更新日時：${formatted}`;
+    </script>
+
+</body>
+
+</html>
