@@ -7,6 +7,12 @@
   <title>札幌市南区</title>
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/common.js"></script>
+  <!-- Intro.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/introjs.min.css" />
+
+  <!-- Intro.js JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/intro.min.js"></script>
+
 </head>
 <style>
   /* ===== パンくずリスト ===== */
@@ -173,11 +179,13 @@
 
   <main>
     <!-- パンくずリスト -->
+     <div id="bread">
     <nav class="breadcrumb">
       <a href="index.html">ホームページ</a> ＞ <span>情報を探す</span>
     </nav>
+    </div>
 
-
+<div id="find">
     <section class="section" id="s_1">
       <h3 class="omidashi">カテゴリーから探す</h3>
       <div class="grid">
@@ -292,6 +300,7 @@
         </a>
       </div>
     </section>
+  </div>
 
   </main>
 
@@ -301,6 +310,50 @@
   <!-- JS 読み込み -->
 
   <script>
+window.addEventListener('load', () => {
+    const hasVisited = localStorage.getItem('hasVisited');
+
+    if (!hasVisited) {
+        // 初回訪問 → ツアーを自動開始
+        startTour();
+
+        // 2回目以降は表示しないようにフラグを保存
+        localStorage.setItem('hasVisited', 'true');
+    }
+
+    // 既存のフォントサイズ保存などの処理はそのまま
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        document.body.classList.remove('font-small', 'font-large');
+        if (savedFontSize === 'small') document.body.classList.add('font-small');
+        if (savedFontSize === 'large') document.body.classList.add('font-large');
+        document.querySelectorAll('input[name="font-size"]').forEach(radio => {
+            if (radio.value === savedFontSize) radio.checked = true;
+        });
+    }
+});
+
+// ツアー開始関数
+function startTour() {
+    introJs()
+        .setOptions({
+            steps: [
+                {
+                    element: '#bread',
+                    intro: 'ここから前のページに戻ることができます',
+                    position: 'bottom'
+                },
+                {
+                    element: '#find',
+                    intro: 'カテゴリー・対象者・できごと別で探せます',
+                    position: 'top'
+                }
+            ],
+            showProgress: true,
+            exitOnOverlayClick: false
+        })
+        .start();
+}
     // -------------------------------
     // 文字サイズ切り替え（CSS変数対応）
     // -------------------------------
