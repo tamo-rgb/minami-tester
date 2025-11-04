@@ -67,14 +67,14 @@
         border: 2px solid var(--color-primary);
         cursor: pointer;
         font-weight: bold;
-        color:var(--color-primary);
+        color: var(--color-primary);
         transition: all 0.2s;
     }
 
     .tab-card-buttons .tab-button.active {
         background: var(--color-primary);
         color: #fff;
-        border-color:var(--color-primary);
+        border-color: var(--color-primary);
     }
 
     .tab-card-content .tab-content {
@@ -199,7 +199,7 @@
 
     .news-image {
         width: 100px;
-        height:auto;
+        height: auto;
         object-fit: cover;
         flex-shrink: 0;
     }
@@ -212,12 +212,13 @@
     }
 
     .news-title {
-        color:var(--color-text);
+        color: var(--color-text);
         margin: 0 0 10px 0;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        line-clamp: 3; /* ← 標準プロパティを追加 */
+        line-clamp: 3;
+        /* ← 標準プロパティを追加 */
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -236,9 +237,11 @@
         font-size: 0.8rem;
         width: fit-content;
     }
+
     .end {
         text-align: center;
     }
+
     h3,
     p {
         margin: 0px;
@@ -281,20 +284,24 @@
                 <section id="new" class="tab-content active">
                     <ul class="news-list">
                         <li class="list-item">
+                            <div class="meta">2025/10/31</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/shinko/seijin/index.html">令和8年（2026年）南区成人の日行事（成人式）の申込フォームを掲載しました。</a>
+                        </li>
+                        <li class="list-item">
+                            <div class="meta">2025/10/31</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/doboku/tsukodome.html">【交通規制】小樽定山渓線・硬石山線ほか冬期通行規制情報を掲載しました</a>
+                        </li>
+                        <li class="list-item">
                             <div class="meta">2025/10/27</div>
-                            <a href="#">南区の冬季除雪情報について</a>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/keiyakujoho/2025ippanjohaisetsu.html">南区役所等駐車場除排雪業務</a>
                         </li>
                         <li class="list-item">
-                            <div class="meta">2025/10/20</div>
-                            <a href="#">地域防災訓練のお知らせ</a>
-                        </li>
-                        <li class="list-item">
-                            <div class="meta">2025/10/20</div>
-                            <a href="#">地域防災訓練のお知らせ</a>
-                        </li>
-                        <li class="list-item">
-                            <div class="meta">2025/10/20</div>
-                            <a href="#">地域防災訓練のお知らせ</a>
+                            <div class="meta">2025/10/24</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/news/202510/20251016.html">南区民生委員・児童委員永年勤続表彰式</a>
                         </li>
                         <div class="more">
                             <a href="news_detail.html">新着情報の詳細はこちら
@@ -307,20 +314,23 @@
                 <section id="news" class="tab-content">
                     <ul class="news-list">
                         <li class="list-item">
+                            <div class="meta">2025/10/28</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/kenkou/walkingtaikai.html">「冬季ノルディックウオーキング体験会」を開催します！</a>
+                        </li>
+                        <li class="list-item">
+                            <div class="meta">2025/10/28</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/kenkou/kenkokyoiku.html">市民健康教育講座「オーラルフレイルを知ろう!」を開催いたします!!</a>
+                        </li>
+                        <li class="list-item">
+                            <div class="meta">2025/10/16</div>
+                            <a
+                                href="https://www.city.sapporo.jp/minami/oshirase/20251020shokudo.html">南区役所食堂営業再開のお知らせ</a>
+                        </li>
+                        <li class="list-item">
                             <div class="meta">2025/10/15</div>
-                            <a href="#">高齢者向け健康講座の開催</a>
-                        </li>
-                        <li class="list-item">
-                            <div class="meta">2025/10/10</div>
-                            <a href="#">ゴミ収集カレンダー更新のお知らせ</a>
-                        </li>
-                        <li class="list-item">
-                            <div class="meta">2025/10/20</div>
-                            <a href="#">地域防災訓練のお知らせ</a>
-                        </li>
-                        <li class="list-item">
-                            <div class="meta">2025/10/20</div>
-                            <a href="#">地域防災訓練のお知らせ</a>
+                            <a href="https://www.city.sapporo.jp/minami/tetuzuki/sougouokuyami.html">総合案内・おくやみ窓口</a>
                         </li>
                         <div class="more">
                             <a href="#">ニュースの詳細はこちら
@@ -401,16 +411,16 @@
 
             document.addEventListener("DOMContentLoaded", function () {
                 const articles = [
-                    { title: "秋の健康フェア開催！血圧測定や栄養相談も", date: "2025-10-01", tag: "イベント", img: "https://placehold.jp/150x150.png?text=健康フェア", link: "#" },
-                    { title: "災害時に備える！家庭でできる防災準備チェックリスト", date: "2025-09-25", tag: "防災", img: "https://placehold.jp/150x150.png?text=防災準備", link: "#" },
-                    { title: "免疫力を高める食材5選", date: "2025-09-20", tag: "健康", img: "https://placehold.jp/150x150.png?text=免疫力アップ", link: "#" },
+                    { title: "熊の目撃情報・LINE配信サービス", date: "2025-10-01", tag: "防災", img: "https://placehold.jp/150x150.png?text=健康フェア", link: "https://www.city.sapporo.jp/kurashi/animal/choju/kuma/linehaishin.html" },
+                    { title: "家庭でできる防災対策のポイント", date: "2025-09-25", tag: "防災", img: "https://placehold.jp/150x150.png?text=防災準備", link:"https://www.city.sapporo.jp/kikikanri/higoro/iza/jibunyakazokuwomamoru.html" },
+                    { title: "南区からのお知らせ（健康関連）", date: "2025-09-20", tag: "健康", img: "https://placehold.jp/150x150.png?text=免疫力アップ", link: "https://www.city.sapporo.jp/minami/kenkou/oshirase.html" },
                     { title: "地域の健康ウォーキング大会レポート", date: "2025-09-15", tag: "イベント", img: "https://placehold.jp/150x150.png?text=ウォーキング", link: "#" },
-                    { title: "非常食の選び方とローリングストックのコツ", date: "2025-09-10", tag: "防災", img: "https://placehold.jp/150x150.png?text=非常食", link: "#" },
-                    { title: "睡眠の質を高める夜の習慣", date: "2025-08-30", tag: "健康", img: "https://placehold.jp/150x150.png?text=睡眠習慣", link: "#" },
-                    { title: "健康イベント2025＠東京ビッグサイト開催決定！", date: "2025-08-20", tag: "イベント", img: "https://placehold.jp/150x150.png?text=イベント開催", link: "#" },
-                    { title: "熱中症対策：正しい水分補給のポイント", date: "2025-08-10", tag: "健康", img: "https://placehold.jp/150x150.png?text=水分補給", link: "#" },
+                    { title: "今月の野菜情報（南区健康づくり）", date: "2025-09-10", tag: "健康", img: "https://placehold.jp/150x150.png?text=非常食", link: "https://www.city.sapporo.jp/minami/kenkou/shousai/kongetunoyasai.html" },
+                    { title: "高齢者見守りサービスのご案内", date: "2025-08-30", tag: "健康", img: "https://placehold.jp/150x150.png?text=睡眠習慣", link: "https://www.city.sapporo.jp/minami/shinko/mimamoru/index.html" },
+                    { title: "秋のお祭り", date: "2025-08-20", tag: "イベント", img: "https://placehold.jp/150x150.png?text=秋のお祭り", link: "https://www.city.sapporo.jp/minami/news/202510/20251028.html" },
+                    { title: "町内会加入のご案内", date: "2025-08-10", tag: "健康", img: "https://placehold.jp/150x150.png?text=水分補給", link: "https://www.city.sapporo.jp/minami/shinko/chounaikai/kanyuu.html" },
                     { title: "地震時の避難行動を見直そう", date: "2025-07-25", tag: "防災", img: "https://placehold.jp/150x150.png?text=地震対策", link: "#" },
-                    { title: "ストレスを減らす呼吸法のススメ", date: "2025-07-15", tag: "健康", img: "https://placehold.jp/150x150.png?text=呼吸法", link: "#" },
+                    { title: "まちづくりセンター", date: "2025-07-15", tag: "健康", img: "https://www.city.sapporo.jp/minami/shinko/chounaikai/kanyuu.html", link: "#" },
                 ];
 
                 const container = document.getElementById("news-container");

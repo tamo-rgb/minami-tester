@@ -34,7 +34,7 @@
   .section {
     border-top: 1px solid #1d8143;
     padding: 10px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
 
   .omidashi h3 {
@@ -73,16 +73,19 @@
     background-color: #d6f6c9;
 
   }
+
   #s_2 .card {
     background-color: #fdf7a5;
     justify-content: center;
   }
+
   #s_3 .card {
     background-color: #fff1c5;
   }
+
   #s_4 .card {
     background-color: #ffe7c5;
-    margin-top:10px;
+    margin-top: 10px;
   }
 
   /* カード */
@@ -146,7 +149,7 @@
 
   p {
     margin: 0px;
-    font-size:var(--font-h4)
+    font-size: var(--font-h4)
   }
 </style>
 
@@ -183,7 +186,7 @@
             <img src="data/search_1.png" alt="手続きアイコン">
           </div>
           <h3>暮らし・手続き</h3>
-          <p>住民票/税金/選挙</p>
+          <p>住民票/税金</p>
         </a>
         <a href="search_living.html" class="card">
           <div class="card-icon">
@@ -192,26 +195,19 @@
           <h3>防災・安全</h3>
           <p>避難所・災害情報</p>
         </a>
-        <a href="index.html" class="card">
+        <a href="search_health.html" class="card">
           <div class="card-icon">
             <img src="data/search_3.png" alt="手続きアイコン">
           </div>
-          <h3>子育て・教育</h3>
-          <p>保育園情報/習い事</p>
-        </a>
-        <a href="index.html" class="card">
-          <div class="card-icon">
-            <img src="data/search_4.png" alt="健康アイコン">
-          </div>
-          <h3>健康・福祉</h3>
-          <p>予防接種/高齢者福祉</p>
+          <h3>子育て・健康<br>福祉</h3>
+          <p>健康診断/介護<br>医療機について</p>
         </a>
         <a href="index.html" class="card">
           <div class="card-icon">
             <img src="data/search_5.png" alt="健康アイコン">
           </div>
-          <h3>町・暮らし</h3>
-          <p>施設/町内会/ゴミ出し</p>
+          <h3>環境<br>まちづくり</h3>
+          <p>公園設備/雪対策/道路整備</p>
         </a>
 
         <a href="index.html" class="card">
@@ -219,7 +215,14 @@
             <img src="data/search_6.png" alt="健康アイコン">
           </div>
           <h3>文化・イベント</h3>
-          <p>観光地/地域イベント</p>
+          <p>観光地<br>地域イベント</p>
+        </a>
+        <a href="index.html" class="card">
+          <div class="card-icon">
+            <img src="data/search_4.png" alt="健康アイコン">
+          </div>
+          <h3>市政・広報</h3>
+          <p>市の方針・計画<br>広報さっぽろ</p>
         </a>
       </div>
     </section>
@@ -290,46 +293,46 @@
       </div>
     </section>
 
-</main>
+  </main>
 
-<!-- フッター読み込み -->
-<div id="footer"></div>
+  <!-- フッター読み込み -->
+  <div id="footer"></div>
 
-<!-- JS 読み込み -->
+  <!-- JS 読み込み -->
 
-<script>
-  // -------------------------------
-  // 文字サイズ切り替え（CSS変数対応）
-  // -------------------------------
-  const fontSizeRadios = document.querySelectorAll('input[name="font-size"]');
+  <script>
+    // -------------------------------
+    // 文字サイズ切り替え（CSS変数対応）
+    // -------------------------------
+    const fontSizeRadios = document.querySelectorAll('input[name="font-size"]');
 
-  // ページ読み込み時に保存値があれば反映
-  const savedFontSize = localStorage.getItem('fontSize');
-  if (savedFontSize) {
-    document.body.classList.remove('font-small', 'font-large');
-    if (savedFontSize === 'small') document.body.classList.add('font-small');
-    if (savedFontSize === 'large') document.body.classList.add('font-large');
-
-    // ラジオボタンもチェック状態に
-    fontSizeRadios.forEach(radio => {
-      if (radio.value === savedFontSize) radio.checked = true;
-    });
-  }
-
-  // 選択変更時
-  fontSizeRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
+    // ページ読み込み時に保存値があれば反映
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
       document.body.classList.remove('font-small', 'font-large');
-      if (radio.value === 'small') document.body.classList.add('font-small');
-      if (radio.value === 'large') document.body.classList.add('font-large');
-      // 中の場合はクラスなし（デフォルト）
+      if (savedFontSize === 'small') document.body.classList.add('font-small');
+      if (savedFontSize === 'large') document.body.classList.add('font-large');
 
-      // localStorageに保存
-      localStorage.setItem('fontSize', radio.value);
+      // ラジオボタンもチェック状態に
+      fontSizeRadios.forEach(radio => {
+        if (radio.value === savedFontSize) radio.checked = true;
+      });
+    }
+
+    // 選択変更時
+    fontSizeRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.body.classList.remove('font-small', 'font-large');
+        if (radio.value === 'small') document.body.classList.add('font-small');
+        if (radio.value === 'large') document.body.classList.add('font-large');
+        // 中の場合はクラスなし（デフォルト）
+
+        // localStorageに保存
+        localStorage.setItem('fontSize', radio.value);
+      });
     });
-  });
 
-</script>
+  </script>
 </body>
 
 </html>

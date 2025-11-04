@@ -2,758 +2,774 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>札幌市南区</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/common.js"></script>
-  <!-- Intro.js CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/introjs.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>札幌市南区</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/common.js"></script>
+    <!-- Intro.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/introjs.min.css" />
 
-  <!-- Intro.js JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/intro.min.js"></script>
+    <!-- Intro.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/intro.min.js"></script>
 </head>
 <style>
-  /* Heroスライドショー */
-  .hero {
-    position: relative;
-    margin: 20px auto 10px auto;
-    /* 上下60px、左右自動で中央寄せ */
-    width: 90%;
-    /* 横幅は画面の90% */
-    max-width: 500px;
-    /* 最大幅を500pxに制限 */
-    aspect-ratio: 2/1;
-    /* 高さは幅に対して2:1 */
-    border-radius: 20px;
-    overflow: hidden;
-  }
+    /* Heroスライドショー */
+    .hero {
+        position: relative;
+        margin: 20px auto 10px auto;
+        /* 上下60px、左右自動で中央寄せ */
+        width: 90%;
+        /* 横幅は画面の90% */
+        max-width: 500px;
+        /* 最大幅を500pxに制限 */
+        aspect-ratio: 2/1;
+        /* 高さは幅に対して2:1 */
+        border-radius: 20px;
+        overflow: hidden;
+    }
 
-  .hero-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
-  }
+    .hero-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 1;
+    }
 
-  .hero-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
+    .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
 
-  .hero-slide.active {
-    opacity: 1;
-    z-index: 2;
-  }
+    .hero-slide.active {
+        opacity: 1;
+        z-index: 2;
+    }
 
-  /* --popup--*/
-  #popup {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    z-index: 2000;
-  }
+    /* --popup--*/
+    #popup {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        z-index: 2000;
+    }
 
-  .popup-content {
-    background: #fff;
-    margin: auto 10px;
-    padding: 10px 20px;
-    border-radius: 15px;
-    width: 95%;
-    flex-direction: column;
-    text-align: center;
-    position: relative;
-  }
+    .popup-content {
+        background: #fff;
+        margin: auto 10px;
+        padding: 10px 20px;
+        border-radius: 15px;
+        width: 95%;
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+    }
 
-  .popup-content h3 {
-    font-size: var(--font-h3);
-  }
+    .popup-content h3 {
+        font-size: var(--font-h3);
+    }
 
-  .popup-content .popup-question {
-    display: flex;
-    text-align: left;
-    align-items: left;
-    margin-bottom: 15px;
-  }
+    .popup-content .popup-question {
+        display: flex;
+        text-align: left;
+        align-items: left;
+        margin-bottom: 15px;
+    }
 
-  #popupSubmit {
-    padding: 15px 40px;
-    cursor: pointer;
-    background: #247627;
-    font-weight: bold;
-    font-size: var(--font-button);
-    color: #f5f8fb;
-    border: #247627;
-    border-radius: 50px;
-  }
+    #popupSubmit {
+        padding: 15px 40px;
+        cursor: pointer;
+        background: #247627;
+        font-weight: bold;
+        font-size: var(--font-button);
+        color: #f5f8fb;
+        border: #247627;
+        border-radius: 50px;
+    }
 
-  .popup-line {
-    display: flex;
-    flex-wrap: wrap;
-    /* 子要素を折り返す */
-    flex-direction: column;
-    gap: 5px;
-  }
+    .popup-line {
+        display: flex;
+        flex-wrap: wrap;
+        /* 子要素を折り返す */
+        flex-direction: column;
+        gap: 5px;
+    }
 
-  .popup-question {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-
-  /* コンテンツボックス */
-  #contents {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .content-box {
-    display: flex;
-    padding: 10px 20px 10px 10px;
-    border-radius: 20px;
-    align-items: center;
-    background-color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .content-box .arrow {
-    display: inline-block;
-    margin-left: auto;
-    width: 10px;
-    height: 10px;
-    border-bottom: 5px solid #fffdf9;
-    border-right: 5px solid #fffdf9;
-    transform: rotate(-45deg);
-  }
-
-  .content-box .icon img {
-    width: 3em;
-    padding: 0.5em;
-    object-fit: contain;
-  }
-
-  .content-box .text {
-    padding: 0px 0.5em;
-    color: var(--color-bg);
-  }
-
-  .content-box h2,
-  .content-box h4 {
-    margin: 0px;
-  }
-
-  .content-box h2 {
-    margin-bottom: 0.2em;
-  }
-
-  /* form */
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 10px 40px 10px 12px;
-    font-size: var(--font-body);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6H0z' fill='%23333'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px 6px;
-    cursor: pointer;
-    transition: border 0.3s, box-shadow 0.3s;
-  }
-
-  .form-section {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 10px;
-  }
-
-  #region,
-  #audience {
-    margin: 0px 30px;
-  }
+    .popup-question {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
 
 
+    /* コンテンツボックス */
+    #contents {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
-  /* トグルリスト */
-  .personalize {
-    margin: 10px;
-    background-color: var(--color-secondary);
-    padding: 10px;
-    border-radius: 14px;
-    margin-bottom: 30px;
-  }
+    .content-box {
+        display: flex;
+        padding: 10px 20px 10px 10px;
+        border-radius: 20px;
+        align-items: center;
+        background-color: var(--color-primary);
+        text-decoration: none;
+    }
 
-  .toggle-list {
-    margin-bottom: 20px;
-    border-radius: 12px;
-    overflow: hidden;
-    text-align: center;
-    background: var(--color-primary);
-  }
+    .content-box .arrow {
+        display: inline-block;
+        margin-left: auto;
+        width: 10px;
+        height: 10px;
+        border-bottom: 5px solid #fffdf9;
+        border-right: 5px solid #fffdf9;
+        transform: rotate(-45deg);
+    }
 
-  .toggle-header {
-    display: flex;
-    padding: 15px 40px;
-    cursor: pointer;
-    background: var(--color-primary);
-    font-weight: bold;
-    color: var(--color-bg);
-    font-size: var(--font-h3);
-  }
+    .content-box .icon img {
+        width: 3em;
+        padding: 0.5em;
+        object-fit: contain;
+    }
 
-  .toggle-header span {
-    font-size: var(--font-h1);
-    margin-left: auto;
-    /* 左側のテキストから自動で離す */
-  }
+    .content-box .text {
+        padding: 0px 0.5em;
+        color: var(--color-bg);
+    }
 
-  .toggle-content {
-    display: none;
-    padding: 0.1em 0.4em;
-    background: #fff;
-  }
+    .content-box h2,
+    .content-box h4 {
+        margin: 0px;
+    }
 
-  .toggle-list.active .toggle-content {
-    display: block;
-  }
+    .content-box h2 {
+        margin-bottom: 0.2em;
+    }
 
-  .recommended-container {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    align-items: stretch;
-  }
+    /* form */
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 10px 40px 10px 12px;
+        font-size: var(--font-body);
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6H0z' fill='%23333'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 10px 6px;
+        cursor: pointer;
+        transition: border 0.3s, box-shadow 0.3s;
+    }
 
-  .recommended-card {
-    background: var(--color-bg);
-    justify-content: center;
-    padding: 15px;
-    border-radius: 15px;
-    margin: 7px;
-    text-align: center;
-    flex: 0 0 calc(50% - 14px);
-    box-sizing: border-box;
-  }
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin: 10px;
+    }
 
-  .recommended-card h4 {
-    font-size: var(--font-h4);
-    color: #555555;
-    margin: 0px 0px 7px 0px;
-  }
-
-  .recommended-card p {
-    font-size: var(--font-p);
-    margin: 0px 0px 8px 0px;
-    color: #333;
-  }
-
-  .recommended-card a {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 8px 16px;
-    background: #0073e6;
-    color: #fff;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: var(--font-p);
-  }
+    #region,
+    #audience {
+        margin: 0px 30px;
+    }
 
 
-  /* ボタン */
-  #start-tour {
-    padding: 15px 40px;
-    cursor: pointer;
-    background: var(--color-primary);
-    font-weight: bold;
-    font-size: var(--font-button);
-    color: var(--color-bg);
-    border: var(--color-primary);
-    border-radius: 50px;
-  }
 
-  .end {
-    text-align: center;
-  }
+    /* トグルリスト */
+    .personalize {
+        margin: 10px;
+        background-color: var(--color-secondary);
+        padding: 10px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+    }
+
+    .toggle-list {
+        margin-bottom: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        background: var(--color-primary);
+    }
+
+    .toggle-header {
+        display: flex;
+        padding: 15px 40px;
+        cursor: pointer;
+        background: var(--color-primary);
+        font-weight: bold;
+        color: var(--color-bg);
+        font-size: var(--font-h3);
+    }
+
+    .toggle-header span {
+        font-size: var(--font-h1);
+        margin-left: auto;
+        /* 左側のテキストから自動で離す */
+    }
+
+    .toggle-content {
+        display: none;
+        padding: 0.1em 0.4em;
+        background: #fff;
+    }
+
+    .toggle-list.active .toggle-content {
+        display: block;
+    }
+
+    .recommended-container {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        align-items: stretch;
+    }
+
+    .recommended-card {
+        background: var(--color-bg);
+        justify-content: center;
+        padding: 15px;
+        border-radius: 15px;
+        margin: 7px;
+        text-align: center;
+        flex: 0 0 calc(50% - 14px);
+        box-sizing: border-box;
+    }
+
+    .recommended-card h4 {
+        font-size: var(--font-h4);
+        color: #555555;
+        margin: 0px 0px 7px 0px;
+    }
+
+    .recommended-card p {
+        font-size: var(--font-p);
+        margin: 0px 0px 8px 0px;
+        color: #333;
+    }
+
+    .recommended-card a {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 8px 16px;
+        background: #0073e6;
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: var(--font-p);
+    }
+
+
+    /* ボタン */
+    #start-tour {
+        padding: 15px 40px;
+        cursor: pointer;
+        background: var(--color-primary);
+        font-weight: bold;
+        font-size: var(--font-button);
+        color: var(--color-bg);
+        border: var(--color-primary);
+        border-radius: 50px;
+    }
+
+    .end {
+        text-align: center;
+    }
 </style>
 
 <body>
-  <!-- スクロール進捗バー -->
-  <div id="scrollProgress"></div>
+    <!-- スクロール進捗バー -->
+    <div id="scrollProgress"></div>
 
-  <!-- ポップアップ -->
-  <div id="popup" style="display:none;">
-    <div class="popup-content">
-      <h3>札幌市南区へ<br>ようこそ</h3>
-      <div class="popup-line">
-        <div class="popup-question">
-          <label>お住まい</label>
-          <select id="popupRegion">
-            <option value="なし">南区以外/なし</option>
-            <option value="area_1">真駒内柏丘/東町</option>
-            <option value="area_2">石山東/常盤/滝野/芸術の森</option>
-            <option value="area_3">藤野/白川/簾舞/砥山/豊滝</option>
-            <option value="area_4">真駒内本町/容町/曙町/緑町</option>
-            <option value="area_5">澄川</option>
-            <option value="area_6">南沢</option>
-            <option value="area_7">真駒内</option>
-          </select>
-        </div>
+    <!-- ポップアップ -->
+    <div id="popup" style="display:none;">
+        <div class="popup-content">
+            <h3>札幌市南区へ<br>ようこそ</h3>
+            <div class="popup-line">
+                <div class="popup-question">
+                    <label>お住まい</label>
+                    <select id="popupRegion">
+                        <option value="なし">南区以外/なし</option>
+                        <option value="area_1">真駒内柏丘/東町</option>
+                        <option value="area_2">石山東/常盤/滝野/芸術の森</option>
+                        <option value="area_3">藤野/白川/簾舞/砥山/豊滝</option>
+                        <option value="area_4">真駒内本町/容町/曙町/緑町</option>
+                        <option value="area_5">澄川</option>
+                        <option value="area_6">南沢</option>
+                        <option value="area_7">真駒内</option>
+                    </select>
+                </div>
 
-        <div class="popup-question">
-          <label>あなたの立場</label>
-          <select id="popupAudience">
-            <option value="一般">一般</option>
-            <option value="一人暮らし">一人暮らし</option>
-            <option value="事業者">事業者</option>
-            <option value="子育て">子育て</option>
-            <option value="シニア">シニア</option>
-          </select>
-        </div>
-      </div>
-      <button id="popupSubmit">サイトを見る</button>
-    </div>
-  </div>
-
-  <!-- ヘッダー読み込み -->
-  <div id="header"></div>
-
-  <!-- 余白 -->
-  <div style="height: 60px;  background-color: #ffffff;">
-  </div>
-
-  <main>
-
-    <!-- Heroスライドショー -->
-    <section class="hero">
-      <a href="page1.html" class="hero-slide">
-        <img src="/data/photo_1.jpg" alt="画像1">
-      </a>
-      <a href="page2.html" class="hero-slide">
-        <img src="/data/photo_2.JPG" alt="画像2">
-      </a>
-      <a href="page3.html" class="hero-slide">
-        <img src="/data/photo_3.jpg" alt="画像3">
-      </a>
-    </section>
-
-    <!-- コンテンツボックス -->
-    <section id="contents">
-      <a href="search.html" class="content-box">
-        <div class="icon">
-          <img src="data/home_1.png" alt="情報を探すアイコン">
-        </div>
-        <div class="text">
-          <h2>情報を探す</h2>
-          <h4>手続きを知りたい</h4>
-        </div>
-        <div class="arrow"></div>
-      </a>
-      <a href="news.html" class="content-box">
-        <div class="icon">
-          <img src="data/home_2.png" alt="情報を探すアイコン">
-        </div>
-        <div class="text">
-          <h2>お知らせを見る</h2>
-          <h4>ニュース/イベントを見る</h4>
-        </div>
-        <div class="arrow"></div>
-      </a>
-    </section>
-    <section class="personalize">
-      <div class="toggle-list">
-        <div id="tog-header" class="toggle-header">カスタマイズをする<span>+</span></div>
-        <div class="toggle-content">
-          <div class="form-section">
-            <label for="region">お住まいの地域</label>
-            <select id="region">
-              <option value="なし">なし</option>
-              <option value="area_1">真駒内柏丘/東町/幸町/泉町/南町</option>
-              <option value="area_2">石山東/常盤/滝野/芸術の森</option>
-              <option value="area_3">藤野/白川/簾舞/砥山/豊滝/硬石山/小金湯/定山渓温泉西/定山渓温泉東/定山渓</option>
-              <option value="area_4">真駒内本町/容町/曙町/緑町</option>
-              <option value="area_5">澄川</option>
-              <option value="area_6">南沢</option>
-              <option value="area_7">真駒内</option>
-            </select>
-          </div>
-
-          <div class="form-section">
-            <label for="audience">対象者</label>
-            <select id="audience">
-              <option value="一般">一般</option>
-              <option value="一人暮らし">一人暮らし</option>
-              <option value="事業者">事業者</option>
-              <option value="子育て">子育て</option>
-              <option value="シニア">シニア</option>
-            </select>
-          </div>
-
-          <div class="form-section font-size-toggle">
-            <label>文字サイズ</label>
-            <div>
-              <label><input type="radio" name="font-size" value="small"> 小</label>
-              <label><input type="radio" name="font-size" value="medium"> 中</label>
-              <label><input type="radio" name="font-size" value="large" checked> 大</label>
+                <div class="popup-question">
+                    <label>あなたの立場</label>
+                    <select id="popupAudience">
+                        <option value="一般">一般</option>
+                        <option value="一人暮らし">一人暮らし</option>
+                        <option value="事業者">事業者</option>
+                        <option value="子育て">子育て</option>
+                        <option value="シニア">シニア</option>
+                    </select>
+                </div>
             </div>
-          </div>
+            <button id="popupSubmit">サイトを見る</button>
         </div>
-        <!-- toggle外 -->
-      </div>
-      <div id="dynamicContent"></div>
-    </section>
+    </div>
 
-    <section class="end">
-      <button id="start-tour" data-step="3">
-        ガイド開始
-      </button>
-    </section>
+    <!-- ヘッダー読み込み -->
+    <div id="header"></div>
+
+    <!-- 余白 -->
+    <div style="height: 60px;  background-color: #ffffff;">
+    </div>
+
+    <main>
+
+        <!-- Heroスライドショー -->
+        <section class="hero">
+            <a href="https://www.city.sapporo.jp/minami/news/202510/20251018.html" class="hero-slide">
+                <img src="/data/photo_1.jpg" alt="画像1">
+            </a>
+            <a href="https://www.city.sapporo.jp/minami/news/202510/20251028.html" class="hero-slide">
+                <img src="/data/photo_2.JPG" alt="画像2">
+            </a>
+            <a href="https://www.city.sapporo.jp/minami/news/202510/20251020.html" class="hero-slide">
+                <img src="/data/photo_3.jpg" alt="画像3">
+            </a>
+        </section>
+
+        <!-- コンテンツボックス -->
+        <section id="contents">
+            <a href="search.html" class="content-box">
+                <div class="icon">
+                    <img src="data/home_1.png" alt="情報を探すアイコン">
+                </div>
+                <div class="text">
+                    <h2>情報を探す</h2>
+                    <h4>手続きを知りたい</h4>
+                </div>
+                <div class="arrow"></div>
+            </a>
+            <a href="news.html" class="content-box">
+                <div class="icon">
+                    <img src="data/home_2.png" alt="情報を探すアイコン">
+                </div>
+                <div class="text">
+                    <h2>お知らせを見る</h2>
+                    <h4>ニュース/イベントを見る</h4>
+                </div>
+                <div class="arrow"></div>
+            </a>
+        </section>
+        <section class="personalize">
+            <div class="toggle-list">
+                <div id="tog-header" class="toggle-header">カスタマイズをする<span>+</span></div>
+                <div class="toggle-content">
+                    <div class="form-section">
+                        <label for="region">お住まいの地域</label>
+                        <select id="region">
+                            <option value="なし">なし</option>
+                            <option value="area_1">真駒内柏丘/東町/幸町/泉町/南町</option>
+                            <option value="area_2">石山東/常盤/滝野/芸術の森</option>
+                            <option value="area_3">藤野/白川/簾舞/砥山/豊滝/硬石山/小金湯/定山渓温泉西/定山渓温泉東/定山渓</option>
+                            <option value="area_4">真駒内本町/容町/曙町/緑町</option>
+                            <option value="area_5">澄川</option>
+                            <option value="area_6">南沢</option>
+                            <option value="area_7">真駒内</option>
+                        </select>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="audience">対象者</label>
+                        <select id="audience">
+                            <option value="一般">一般</option>
+                            <option value="一人暮らし">一人暮らし</option>
+                            <option value="事業者">事業者</option>
+                            <option value="子育て">子育て</option>
+                            <option value="シニア">シニア</option>
+                        </select>
+                    </div>
+
+                    <div class="form-section font-size-toggle">
+                        <label>文字サイズ</label>
+                        <div>
+                            <label><input type="radio" name="font-size" value="small"> 小</label>
+                            <label><input type="radio" name="font-size" value="medium"> 中</label>
+                            <label><input type="radio" name="font-size" value="large" checked> 大</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- toggle外 -->
+            </div>
+            <div id="dynamicContent"></div>
+        </section>
+
+        <section class="end">
+            <button id="start-tour" data-step="3">
+                ガイド開始
+            </button>
+        </section>
 
 
 
 
-  </main>
+    </main>
 
-  <!-- フッター読み込み -->
-  <div id="footer"></div>
+    <!-- フッター読み込み -->
+    <div id="footer"></div>
 
-  <!-- JS 読み込み -->
+    <!-- JS 読み込み -->
 
-  <script>
-    // Heroスライドショー
-    const slides = document.querySelectorAll('.hero-slide');
-    let currentSlide = 0;
-    const slideInterval = 7000; // 4秒ごとに切り替え
+    <script>
+        // Heroスライドショー
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        const slideInterval = 7000; // 4秒ごとに切り替え
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-    // 初期表示
-    showSlide(currentSlide);
-
-    // 自動切替
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, slideInterval);
-    // -------------------------------
-    // 要素取得
-    // -------------------------------
-    const regionSelect = document.getElementById('region');
-    const audienceSelect = document.getElementById('audience');
-    const dynamicContent = document.getElementById('dynamicContent');
-    const popup = document.getElementById('popup');
-    const popupRegion = document.getElementById('popupRegion');
-    const popupAudience = document.getElementById('popupAudience');
-    const popupSubmit = document.getElementById('popupSubmit');
-    const startTourBtn = document.getElementById('start-tour');
-
-    // -------------------------------
-    // 記事データ
-    // -------------------------------
-    const recommendedArticles = {
-      一般: [
-        { title: "簡単に証明書発行をするコツ", url: "#" },
-        { title: "国民健康保険料の夜間納付相談のお知らせ", url: "https://www.city.sapporo.jp/minami/hoken/yakannofusodan.html" },
-        { title: "南区役所食堂営業再開のお知らせ", url: "https://www.city.sapporo.jp/minami/oshirase/20251020shokudo.html" }
-      ],
-      一人暮らし: [
-        { title: "", url: "" },
-        { title: "勉強効率アップのコツ", url: "#" },
-        { title: "アルバイト情報まとめ", url: "#" }
-      ],
-      事業者: [
-        { title: "仕事効率化ツール", url: "#" },
-        { title: "おすすめ資格情報", url: "#" },
-        { title: "ストレス対策方法", url: "#" }
-      ],
-      シニア: [
-        { title: "紅葉ウオーキング大会", url: "https://www.city.sapporo.jp/minami/news/202510/20251018.html" },
-        { title: "熟年者ふれあい交流会", url: "https://www.city.sapporo.jp/minami/news/202510/20251015-2.html" },
-        { title: "南区の認知症への取組", url: "https://www.city.sapporo.jp/minami/fukushi/nintisyoumap.html" }
-      ]
-    };
-    // -------------------------------
-    // 地域データ
-    // -------------------------------
-    const calendarPages = {
-      澄川: "calendar_sumikawa.html",
-      真駒内: "calendar_makomau.html",
-      滝野: "calendar_takino.html"
-    };
-    const nearbyFacilities = {
-      澄川: [
-        { name: "近くの施設", url: "facility_sumikawa_library.html" },
-      ],
-      真駒内: [
-        { name: "真駒内の近くの施設", url: "facility_makomanai_gym.html" },
-      ],
-      滝野: [
-        { name: "滝野の近くの施設", url: "facility_takino_center.html" }
-      ]
-    };
-
-    // -------------------------------
-    // 前回訪問データを取得
-    // -------------------------------
-    const hasVisited = localStorage.getItem('hasVisited');
-    const savedRegion = localStorage.getItem('selectedRegion');
-    const savedAudience = localStorage.getItem('selectedAudience');
-
-    // -------------------------------
-    // 初期化処理（ページ読み込み時）
-    // -------------------------------
-    window.addEventListener('load', () => {
-      if (!hasVisited) {
-        // 初回訪問 → POPUPを表示
-        popup.style.display = 'flex';
-      } else {
-        // 2回目以降 → 前回選択を反映
-        if (savedRegion && savedAudience) {
-          regionSelect.value = savedRegion;
-          audienceSelect.value = savedAudience;
-          updateDynamicContent();
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
         }
-      }
-    });
-    // -------------------------------
-    // POPUPの選択時、南区以外/なしを内部的に'なし'に統一
-    // -------------------------------
-    popupRegion.addEventListener('change', () => {
-      // optionのvalueはすでに 'なし' なので基本は不要ですが、念のため
-      if (popupRegion.value === "なし") {
-        popupRegion.value = "なし";
-      }
-    });
 
-    // -------------------------------
-    // POPUP送信時（初回訪問時のみ）
-    // -------------------------------
-    popupSubmit.addEventListener('click', () => {
-      const selectedRegion = popupRegion.value;
-      const selectedAudience = popupAudience.value;
+        // 初期表示
+        showSlide(currentSlide);
 
-      if (!selectedRegion || !selectedAudience) {
-        alert("両方選択してください");
-        return;
-      }
+        // 自動切替
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, slideInterval);
+        // -------------------------------
+        // 要素取得
+        // -------------------------------
+        const regionSelect = document.getElementById('region');
+        const audienceSelect = document.getElementById('audience');
+        const dynamicContent = document.getElementById('dynamicContent');
+        const popup = document.getElementById('popup');
+        const popupRegion = document.getElementById('popupRegion');
+        const popupAudience = document.getElementById('popupAudience');
+        const popupSubmit = document.getElementById('popupSubmit');
+        const startTourBtn = document.getElementById('start-tour');
 
-      // 選択内容をフォームに反映
-      regionSelect.value = selectedRegion;
-      audienceSelect.value = selectedAudience;
+        // -------------------------------
+        // 記事データ
+        // -------------------------------
+        const recommendedArticles = {
+            一般: [
+                { title: "簡単に証明書発行をするコツ", url: "#" },
+                { title: "国民健康保険料の夜間納付相談のお知らせ", url: "https://www.city.sapporo.jp/minami/hoken/yakannofusodan.html" },
+                { title: "南区役所食堂営業再開のお知らせ", url: "https://www.city.sapporo.jp/minami/oshirase/20251020shokudo.html" }
+            ],
+            一人暮らし: [
+                { title: "来庁せずにできる手続き", url: "https://www.city.sapporo.jp/minami/annai/jyuminhyoraityonashi.html" },
+                { title: "住居確保給付金について", url: "https://step-sapporo.jp/housingbenefit/?utm_source=chatgpt.com" },
+                { title: "アルバイト情報まとめ", url: "#" }
+            ],
+            事業者: [
+                { title: "企業DX推進に向けた支援", url: "https://www.city.sapporo.jp/keizai/top/topics/it/kigyoudx.html?utm_source=chatgpt.com" },
+                { title: "中小企業への融資・支援", url: "https://www.city.sapporo.jp/keizai/chusho/index.html" },
+                { title: "事業所から出るごみ", url: "https://www.city.sapporo.jp/seiso/jigyousyo/jigyousyo.html" }
+            ],
+            シニア: [
+                { title: "紅葉ウオーキング大会", url: "https://www.city.sapporo.jp/minami/news/202510/20251018.html" },
+                { title: "熟年者ふれあい交流会", url: "https://www.city.sapporo.jp/minami/news/202510/20251015-2.html" },
+                { title: "南区の認知症への取組", url: "https://www.city.sapporo.jp/minami/fukushi/nintisyoumap.html" }
+            ]
+        };
+        // -------------------------------
+        // 地域データ
+        // -------------------------------
+        const calendarPages = {
+            area_1: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami1_07090809.pdf",
+            area_2: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami2_07090809.pdf", 
+            area_3: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami3_07090809.pdf", 
+            area_4: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami4_07090809.pdf",
+            area_5: "calendar_area5.html",
+            area_6: "calendar_area6.html",
+            area_7: "calendar_area7.html"
+        };
+        const nearbyFacilities = {
+            area_1: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_2: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_3: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_4: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_5: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_6: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+            area_7: [
+                { name: "近くの施設", url: "facility_sumikawa_library.html" },
+            ],
+        };
 
-      // コンテンツ更新
-      updateDynamicContent();
+        // -------------------------------
+        // 前回訪問データを取得
+        // -------------------------------
+        const hasVisited = localStorage.getItem('hasVisited');
+        const savedRegion = localStorage.getItem('selectedRegion');
+        const savedAudience = localStorage.getItem('selectedAudience');
 
-      // 保存
-      localStorage.setItem('selectedRegion', selectedRegion);
-      localStorage.setItem('selectedAudience', selectedAudience);
-      localStorage.setItem('hasVisited', 'true'); // 初回訪問済みフラグ
-
-      // POPUPを閉じる
-      popup.style.display = 'none';
-
-      // 🎯 初回のみツアー開始
-      startTour();
-    });
-
-    // -------------------------------
-    // セレクト変更時：保存＋更新
-    // -------------------------------
-    regionSelect.addEventListener('change', () => {
-      localStorage.setItem('selectedRegion', regionSelect.value);
-      updateDynamicContent();
-    });
-
-    audienceSelect.addEventListener('change', () => {
-      localStorage.setItem('selectedAudience', audienceSelect.value);
-      updateDynamicContent();
-    });
-
-    // -------------------------------
-    // ツアーボタン（2回目以降でも再開可能）
-    // -------------------------------
-    startTourBtn.addEventListener('click', () => {
-      startTour();
-    });
-    // -------------------------------
-    // intro.jsツアー関数
-    // -------------------------------
-    function startTour() {
-      introJs()
-        .setOptions({
-          steps: [
-            {
-              element: '#emergency',
-              intro: 'ここから緊急情報・緊急時の対応を確認できます',
-              position: 'bottom'
-            },
-            {
-              element: '#contents',
-              intro: 'ここから目的別で情報を探すことができます',
-              position: 'top'
-            },
-            {
-              element: '#tog-header',
-              intro: 'ここでは、おすすめ情報がカスタマイズできます！<br>ボタンを押して設定画面を開けます！',
-              position: 'right'
-            },
-            {
-              element: '#start-tour',
-              intro: 'このボタンを押すと、今のガイドを見れます',
-              position: 'top'
+        // -------------------------------
+        // 初期化処理（ページ読み込み時）
+        // -------------------------------
+        window.addEventListener('load', () => {
+            if (!hasVisited) {
+                // 初回訪問 → POPUPを表示
+                popup.style.display = 'flex';
+            } else {
+                // 2回目以降 → 前回選択を反映
+                if (savedRegion && savedAudience) {
+                    regionSelect.value = savedRegion;
+                    audienceSelect.value = savedAudience;
+                    updateDynamicContent();
+                }
             }
-          ],
-          showProgress: true,
-          exitOnOverlayClick: false
-        })
-        .oncomplete(function () {
-          alert('ツアーが終了しました！');
-        })
-        .start();
-    }
-    // -------------------------------
-    // コンテンツ更新関数（記事＋地域）
-    // -------------------------------
-    function updateDynamicContent() {
-      const region = regionSelect.value;
-      const audience = audienceSelect.value;
+        });
+        // -------------------------------
+        // POPUPの選択時、南区以外/なしを内部的に'なし'に統一
+        // -------------------------------
+        popupRegion.addEventListener('change', () => {
+            // optionのvalueはすでに 'なし' なので基本は不要ですが、念のため
+            if (popupRegion.value === "なし") {
+                popupRegion.value = "なし";
+            }
+        });
 
-      dynamicContent.innerHTML = "";
+        // -------------------------------
+        // POPUP送信時（初回訪問時のみ）
+        // -------------------------------
+        popupSubmit.addEventListener('click', () => {
+            const selectedRegion = popupRegion.value;
+            const selectedAudience = popupAudience.value;
 
-      // ごみ＋施設カード用コンテナ（横並び）
-      const mainContainer = document.createElement('div');
-      mainContainer.classList.add('recommended-container');
-       if (region && region !== "なし") {
-        const card = document.createElement('div');
-        card.classList.add('recommended-card');
-        card.innerHTML = `
-            <h4>ごみ収集について</h4>
+            if (!selectedRegion || !selectedAudience) {
+                alert("両方選択してください");
+                return;
+            }
+
+            // 選択内容をフォームに反映
+            regionSelect.value = selectedRegion;
+            audienceSelect.value = selectedAudience;
+
+            // コンテンツ更新
+            updateDynamicContent();
+
+            // 保存
+            localStorage.setItem('selectedRegion', selectedRegion);
+            localStorage.setItem('selectedAudience', selectedAudience);
+            localStorage.setItem('hasVisited', 'true'); // 初回訪問済みフラグ
+
+            // POPUPを閉じる
+            popup.style.display = 'none';
+
+            // 🎯 初回のみツアー開始
+            startTour();
+        });
+
+        // -------------------------------
+        // セレクト変更時：保存＋更新
+        // -------------------------------
+        regionSelect.addEventListener('change', () => {
+            localStorage.setItem('selectedRegion', regionSelect.value);
+            updateDynamicContent();
+        });
+
+        audienceSelect.addEventListener('change', () => {
+            localStorage.setItem('selectedAudience', audienceSelect.value);
+            updateDynamicContent();
+        });
+
+        // -------------------------------
+        // ツアーボタン（2回目以降でも再開可能）
+        // -------------------------------
+        startTourBtn.addEventListener('click', () => {
+            startTour();
+        });
+        // -------------------------------
+        // intro.jsツアー関数
+        // -------------------------------
+        function startTour() {
+            introJs()
+                .setOptions({
+                    steps: [
+                        {
+                            element: '#emergency',
+                            intro: 'ここから緊急情報・緊急時の対応を確認できます',
+                            position: 'bottom'
+                        },
+                        {
+                            element: '#contents',
+                            intro: 'ここから目的別で情報を探すことができます',
+                            position: 'top'
+                        },
+                        {
+                            element: '#tog-header',
+                            intro: 'ここでは、おすすめ情報がカスタマイズできます！<br>ボタンを押して設定画面を開けます！',
+                            position: 'right'
+                        },
+                        {
+                            element: '#start-tour',
+                            intro: 'このボタンを押すと、今のガイドを見れます',
+                            position: 'top'
+                        }
+                    ],
+                    showProgress: true,
+                    exitOnOverlayClick: false
+                })
+                .oncomplete(function () {
+                    alert('ツアーが終了しました！');
+                })
+                .start();
+        }
+        // -------------------------------
+        // コンテンツ更新関数（記事＋地域）
+        // -------------------------------
+        function updateDynamicContent() {
+            const region = regionSelect.value;
+            const audience = audienceSelect.value;
+
+            dynamicContent.innerHTML = "";
+
+            // ごみ＋施設カード用コンテナ（横並び）
+            const mainContainer = document.createElement('div');
+            mainContainer.classList.add('recommended-container');
+            if (region && region !== "なし") {
+                const card = document.createElement('div');
+                card.classList.add('recommended-card');
+                card.innerHTML = `
+            <h4>ごみ収集に<br>ついて</h4>
             <a href="${calendarPages[region]}" target="_blank">カレンダーを見る</a>
         `;
-        mainContainer.appendChild(card);
-      } 
+                mainContainer.appendChild(card);
+            }
 
-      // ごみ収集カード
-/*       if (region && region !== "なし") {
-        const card = document.createElement('div');
-        card.classList.add('recommended-card');
-        card.innerHTML = `
-            <h4>${region}のごみ収集</h4>
-            <a href="${calendarPages[region]}" target="_blank">カレンダーを見る</a>
-        `;
-        mainContainer.appendChild(card);
-      } */
+            // ごみ収集カード
+            /*       if (region && region !== "なし") {
+                    const card = document.createElement('div');
+                    card.classList.add('recommended-card');
+                    card.innerHTML = `
+                        <h4>${region}のごみ収集</h4>
+                        <a href="${calendarPages[region]}" target="_blank">カレンダーを見る</a>
+                    `;
+                    mainContainer.appendChild(card);
+                  } */
 
-      // 施設カード
-      if (region && nearbyFacilities[region]) {
-        nearbyFacilities[region].forEach(facility => {
-          const card = document.createElement('div');
-          card.classList.add('recommended-card');
-          card.innerHTML = `
+            // 施設カード
+            if (region && nearbyFacilities[region]) {
+                nearbyFacilities[region].forEach(facility => {
+                    const card = document.createElement('div');
+                    card.classList.add('recommended-card');
+                    card.innerHTML = `
                 <h4>${facility.name}</h4>
                 <a href="${facility.url}" target="_blank">詳細を見る</a>
             `;
-          mainContainer.appendChild(card);
-        });
-      }
+                    mainContainer.appendChild(card);
+                });
+            }
 
-      // 横並びのコンテナを追加
-      dynamicContent.appendChild(mainContainer);
+            // 横並びのコンテナを追加
+            dynamicContent.appendChild(mainContainer);
 
-      // おすすめ記事カードは別コンテナ（縦並び）
-      if (audience && recommendedArticles[audience]) {
-        const articleContainer = document.createElement('div');
-        articleContainer.classList.add('recommended-container');
-        articleContainer.style.flexDirection = 'column'; // 縦並びに変更
+            // おすすめ記事カードは別コンテナ（縦並び）
+            if (audience && recommendedArticles[audience]) {
+                const articleContainer = document.createElement('div');
+                articleContainer.classList.add('recommended-container');
+                articleContainer.style.flexDirection = 'column'; // 縦並びに変更
 
-        recommendedArticles[audience].forEach(article => {
-          const card = document.createElement('div');
-          card.classList.add('recommended-card');
-          card.innerHTML = `
+                recommendedArticles[audience].forEach(article => {
+                    const card = document.createElement('div');
+                    card.classList.add('recommended-card');
+                    card.innerHTML = `
                 <h4>${article.title}</h4>
                 <p>記事の簡単な説明をここに入れられます</p>
                 <a href="${article.url}" target="_blank">詳しく見る</a>
             `;
-          articleContainer.appendChild(card);
+                    articleContainer.appendChild(card);
+                });
+
+                dynamicContent.appendChild(articleContainer);
+            }
+        }
+        // -------------------------------
+        // ✅ デバッグ用：リセット関数（開発時のみ）
+        // -------------------------------
+        function resetTour() {
+            localStorage.clear();
+            alert('初回状態に戻しました。ページを再読み込みしてください。');
+        }
+
+        // -------------------------------
+        // 文字サイズ切り替え（CSS変数対応）
+        // -------------------------------
+        const fontSizeRadios = document.querySelectorAll('input[name="font-size"]');
+
+        // ページ読み込み時に保存値があれば反映
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            document.body.classList.remove('font-small', 'font-large');
+            if (savedFontSize === 'small') document.body.classList.add('font-small');
+            if (savedFontSize === 'large') document.body.classList.add('font-large');
+
+            // ラジオボタンもチェック状態に
+            fontSizeRadios.forEach(radio => {
+                if (radio.value === savedFontSize) radio.checked = true;
+            });
+        }
+
+        // 選択変更時
+        fontSizeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                document.body.classList.remove('font-small', 'font-large');
+                if (radio.value === 'small') document.body.classList.add('font-small');
+                if (radio.value === 'large') document.body.classList.add('font-large');
+                // 中の場合はクラスなし（デフォルト）
+
+                // localStorageに保存
+                localStorage.setItem('fontSize', radio.value);
+            });
         });
 
-        dynamicContent.appendChild(articleContainer);
-      }
-    }
-    // -------------------------------
-    // ✅ デバッグ用：リセット関数（開発時のみ）
-    // -------------------------------
-    function resetTour() {
-      localStorage.clear();
-      alert('初回状態に戻しました。ページを再読み込みしてください。');
-    }
-
-    // -------------------------------
-    // 文字サイズ切り替え（CSS変数対応）
-    // -------------------------------
-    const fontSizeRadios = document.querySelectorAll('input[name="font-size"]');
-
-    // ページ読み込み時に保存値があれば反映
-    const savedFontSize = localStorage.getItem('fontSize');
-    if (savedFontSize) {
-      document.body.classList.remove('font-small', 'font-large');
-      if (savedFontSize === 'small') document.body.classList.add('font-small');
-      if (savedFontSize === 'large') document.body.classList.add('font-large');
-
-      // ラジオボタンもチェック状態に
-      fontSizeRadios.forEach(radio => {
-        if (radio.value === savedFontSize) radio.checked = true;
-      });
-    }
-
-    // 選択変更時
-    fontSizeRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.body.classList.remove('font-small', 'font-large');
-        if (radio.value === 'small') document.body.classList.add('font-small');
-        if (radio.value === 'large') document.body.classList.add('font-large');
-        // 中の場合はクラスなし（デフォルト）
-
-        // localStorageに保存
-        localStorage.setItem('fontSize', radio.value);
-      });
-    });
 
 
+        // トグルリスト
+        const toggleAllBtn = document.getElementById('toggleAll');
+        let allOpen = false;
 
-    // トグルリスト
-    const toggleAllBtn = document.getElementById('toggleAll');
-    let allOpen = false;
-
-    const items = document.querySelectorAll('.toggle-list');
-    items.forEach(item => {
-      const header = item.querySelector('.toggle-header'); // classで取得
-      header.addEventListener('click', () => {
-        item.classList.toggle('active');
-        const span = header.querySelector('span');
-        span.textContent = item.classList.contains('active') ? '-' : '+';
-      });
-    });
+        const items = document.querySelectorAll('.toggle-list');
+        items.forEach(item => {
+            const header = item.querySelector('.toggle-header'); // classで取得
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const span = header.querySelector('span');
+                span.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
 
 
-  </script>
+    </script>
 </body>
 
 </html>
