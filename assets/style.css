@@ -4,28 +4,6 @@
 /* common.css */
 :root {
     /* デフォルト（中） */
-    --font-body: 14px;
-    --font-h1: 22px;
-    --font-h2: 20px;
-    --font-h3: 18px;
-    --font-h4: 16px;
-    --font-p: 12px;
-    --font-button: 16px;
-    --font-label:18px;
-}
-
-body.font-small {
-    --font-body: 14px;
-    --font-h1: 24px;
-    --font-h2: 22px;
-    --font-h3: 20px;
-    --font-h4: 16px;
-    --font-p: 14px;
-    --font-button: 14px;
-    --font-label:16px;
-}
-
-body.font-medium {
     --font-body: 16px;
     --font-h1: 24px;
     --font-h2: 22px;
@@ -33,7 +11,18 @@ body.font-medium {
     --font-h4: 18px;
     --font-p: 16px;
     --font-button: 16px;
-    --font-label:18px;
+    --font-label: 18px;
+}
+
+body.font-small {
+    --font-body: 14px;
+    --font-h1: 22px;
+    --font-h2: 20px;
+    --font-h3: 18px;
+    --font-h4: 16px;
+    --font-p: 14px;
+    --font-button: 14px;
+    --font-label: 16px;
 }
 
 body.font-large {
@@ -44,8 +33,9 @@ body.font-large {
     --font-h4: 20px;
     --font-p: 20px;
     --font-button: 20px;
-    --font-label:20px;
+    --font-label: 20px;
 }
+
 
 body {
     font-size: var(--font-body);
