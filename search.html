@@ -311,17 +311,17 @@
 
   <script>
 window.addEventListener('load', () => {
-    const hasVisited = localStorage.getItem('hasVisited');
+    const hasVisitedSearch = localStorage.getItem('hasVisitedSearch');
 
-    if (!hasVisited) {
+    if (!hasVisitedSearch) {
         // 初回訪問 → ツアーを自動開始
-        startTour();
+        startTourSearch();
 
         // 2回目以降は表示しないようにフラグを保存
-        localStorage.setItem('hasVisited', 'true');
+        localStorage.setItem('hasVisitedSearch', 'true');
     }
 
-    // 既存のフォントサイズ保存などの処理はそのまま
+    // フォントサイズ設定はそのまま
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
         document.body.classList.remove('font-small', 'font-large');
@@ -333,8 +333,8 @@ window.addEventListener('load', () => {
     }
 });
 
-// ツアー開始関数
-function startTour() {
+// ツアー開始関数（search用）
+function startTourSearch() {
     introJs()
         .setOptions({
             steps: [
@@ -354,6 +354,7 @@ function startTour() {
         })
         .start();
 }
+
     // -------------------------------
     // 文字サイズ切り替え（CSS変数対応）
     // -------------------------------

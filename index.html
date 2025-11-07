@@ -316,7 +316,7 @@
                 <div class="popup-question">
                     <label>あなたの立場</label>
                     <select id="popupAudience">
-                        <option value="一般">一般</option>
+                        <option value="その他">その他</option>
                         <option value="一人暮らし">一人暮らし</option>
                         <option value="事業者">事業者</option>
                         <option value="子育て">子育て</option>
@@ -528,7 +528,7 @@
         // -------------------------------
         // 前回訪問データを取得
         // -------------------------------
-        const hasVisited = localStorage.getItem('hasVisited');
+        const hasVisited_index = localStorage.getItem('hasVisited_index');
         const savedRegion = localStorage.getItem('selectedRegion');
         const savedAudience = localStorage.getItem('selectedAudience');
 
@@ -536,7 +536,7 @@
         // 初期化処理（ページ読み込み時）
         // -------------------------------
         window.addEventListener('load', () => {
-            if (!hasVisited) {
+            if (!hasVisited_index) {
                 // 初回訪問 → POPUPを表示
                 popup.style.display = 'flex';
             } else {
@@ -580,7 +580,7 @@
             // 保存
             localStorage.setItem('selectedRegion', selectedRegion);
             localStorage.setItem('selectedAudience', selectedAudience);
-            localStorage.setItem('hasVisited', 'true'); // 初回訪問済みフラグ
+            localStorage.setItem('hasVisited_index', 'true'); // 初回訪問済みフラグ
 
             // POPUPを閉じる
             popup.style.display = 'none';
@@ -617,22 +617,22 @@
                     steps: [
                         {
                             element: '#emergency',
-                            intro: 'ここから緊急情報・緊急時の対応を確認できます',
+                            intro: 'ここから緊急情報・緊急時の対応を確認できます<br>1/4',
                             position: 'bottom'
                         },
                         {
                             element: '#contents',
-                            intro: 'ここから目的別で情報を探すことができます',
+                            intro: 'ここから目的別で情報を探すことができます<br>2/4',
                             position: 'top'
                         },
                         {
                             element: '#tog-header',
-                            intro: 'ここでは、おすすめ情報がカスタマイズできます！<br>ボタンを押して設定画面を開けます！',
+                            intro: 'ここでは、おすすめ情報がカスタマイズできます！<br>ボタンを押して設定画面を開けます！<br>3/4',
                             position: 'right'
                         },
                         {
                             element: '#start-tour',
-                            intro: 'このボタンを押すと、今のガイドを見れます',
+                            intro: 'このボタンを押すと、今のガイドを見れます<br>4/4',
                             position: 'top'
                         }
                     ],
