@@ -288,45 +288,126 @@
     .end {
         text-align: center;
     }
+
+    .popup-card {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .popup-card.active {
+        display: flex;
+    }
+
+    .popup-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .popup_underbutton{
+        display: flex;
+    }
 </style>
 
 <body>
     <!-- スクロール進捗バー -->
     <div id="scrollProgress"></div>
 
-    <!-- ポップアップ -->
+    <!-- ポップアップ：カード方式 -->
     <div id="popup" style="display:none;">
-        <div class="popup-content">
-            <h3>札幌市南区へ<br>ようこそ</h3>
-            <div class="popup-line">
-                <div class="popup-question">
-                    <label>お住まい</label>
-                    <select id="popupRegion">
-                        <option value="なし">南区以外/なし</option>
-                        <option value="area_1">真駒内柏丘/東町</option>
-                        <option value="area_2">石山東/常盤/滝野/芸術の森</option>
-                        <option value="area_3">藤野/白川/簾舞/砥山/豊滝</option>
-                        <option value="area_4">真駒内本町/容町/曙町/緑町</option>
-                        <option value="area_5">澄川</option>
-                        <option value="area_6">南沢</option>
-                        <option value="area_7">真駒内</option>
-                    </select>
-                </div>
-
-                <div class="popup-question">
-                    <label>あなたの立場</label>
-                    <select id="popupAudience">
-                        <option value="その他">その他</option>
-                        <option value="一人暮らし">一人暮らし</option>
-                        <option value="事業者">事業者</option>
-                        <option value="子育て">子育て</option>
-                        <option value="シニア">シニア</option>
-                    </select>
+        <div class="popup-content" id="popupCardContainer">
+            <!-- STEP 1 -->
+            <div class="popup-card active" data-step="1">
+                <h3>このサイトを訪れるのは<br>初めてですか？</h3>
+                <div class="popup-buttons">
+                    <button class="popup-next" data-answer="yes">はい</button>
+                    <button class="popup-skip" data-answer="no">いいえ</button>
                 </div>
             </div>
-            <button id="popupSubmit">サイトを見る</button>
+
+            <!-- STEP 2 -->
+            <div class="popup-card" data-step="2">
+                <h3>あなたは南区市民ですか？</h3>
+                <div class="popup-buttons">
+                    <button class="popup-next" data-answer="yes">はい</button>
+                    <button class="popup-next" data-answer="no">いいえ</button>
+                </div>
+                <button class="popup-back">戻る</button>
+            </div>
+
+            <!-- STEP 3（南区向け立場） -->
+            <div class="popup-card" data-step="3">
+                <h3>あなたの立場を教えてください</h3>
+                <select id="popupAudienceYes">
+                    <option value="">選択してください</option>
+                    <option value="一人暮らし">一人暮らし</option>
+                    <option value="事業者">事業者</option>
+                    <option value="子育て">子育て</option>
+                    <option value="シニア">シニア</option>
+                    <option value="その他">その他</option>
+                </select>
+                <div class="popup-underbuttons">
+                <button class="popup-back">戻る</button>
+                <button class="popup-next">次へ</button>
+                </div>
+            </div>
+
+            <!-- STEP 4（南区以外向け立場） -->
+            <div class="popup-card" data-step="4">
+                <h3>あなたの立場を教えてください</h3>
+                <select id="popupAudienceNo">
+                    <option value="設定なし">設定なし</option>
+                    <option value="調べ学習">調べ学習</option>
+                    <option value="引っ越し検討">引っ越しを検討</option>
+                </select>
+                <div class="popup-underbuttons">
+                <button class="popup-back">戻る</button>
+                <button class="popup-next">次へ</button>
+                </div>
+            </div>
+
+            <!-- STEP 5（南区民のみ地域選択） -->
+            <div class="popup-card" data-step="5">
+                <h3>お住まいの地域を教えてください</h3>
+                <select id="popupRegion">
+                    <option value="">選択してください</option>
+                    <option value="area_1">真駒内柏丘/東町</option>
+                    <option value="area_2">石山東/常盤/滝野/芸術の森</option>
+                    <option value="area_3">藤野/白川/簾舞/砥山/豊滝</option>
+                    <option value="area_4">真駒内本町/容町/曙町/緑町</option>
+                    <option value="area_5">澄川</option>
+                    <option value="area_6">南沢</option>
+                    <option value="area_7">真駒内</option>
+                </select>
+                <div class="popup-underbuttons">
+                <button class="popup-back">戻る</button>
+                <button class="popup-next">次へ</button>
+                </div>
+            </div>
+
+            <!-- STEP 6（ガイド開始） -->
+            <div class="popup-card" data-step="6">
+                <h3>設定が完了しました！<br>ガイドを開始します</h3>
+                <button id="popupSubmit">サイトを見る</button>
+                <button class="popup-back">戻る</button>
+            </div>
         </div>
     </div>
+
 
     <!-- ヘッダー読み込み -->
     <div id="header"></div>
@@ -394,7 +475,9 @@
                     <div class="form-section">
                         <label for="audience">対象者</label>
                         <select id="audience">
-                            <option value="一般">一般</option>
+                            <option value="一般">南区区民</option>
+                            <option value="調べ学習">調べ学習</option>
+                            <option value="引っ越し検討">引っ越しを検討</option>
                             <option value="一人暮らし">一人暮らし</option>
                             <option value="事業者">事業者</option>
                             <option value="子育て">子育て</option>
@@ -458,10 +541,6 @@
         const regionSelect = document.getElementById('region');
         const audienceSelect = document.getElementById('audience');
         const dynamicContent = document.getElementById('dynamicContent');
-        const popup = document.getElementById('popup');
-        const popupRegion = document.getElementById('popupRegion');
-        const popupAudience = document.getElementById('popupAudience');
-        const popupSubmit = document.getElementById('popupSubmit');
         const startTourBtn = document.getElementById('start-tour');
 
         // -------------------------------
@@ -483,6 +562,16 @@
                 { title: "中小企業への融資・支援", url: "https://www.city.sapporo.jp/keizai/chusho/index.html" },
                 { title: "事業所から出るごみ", url: "https://www.city.sapporo.jp/seiso/jigyousyo/jigyousyo.html" }
             ],
+            調べ学習: [
+                { title: "動画で知る南区", url: "https://www.city.sapporo.jp/keizai/top/topics/it/kigyoudx.html?utm_source=chatgpt.com" },
+                { title: "広報さっぽろ", url: "https://www.city.sapporo.jp/keizai/chusho/index.html" },
+                { title: "南区の地域紹介", url: "https://www.city.sapporo.jp/seiso/jigyousyo/jigyousyo.html" }
+            ],
+            引っ越し検討: [
+                { title: "引っ越し体験談", url: "https://www.city.sapporo.jp/keizai/top/topics/it/kigyoudx.html?utm_source=chatgpt.com" },
+                { title: "広報さっぽろ", url: "https://www.city.sapporo.jp/keizai/chusho/index.html" },
+                { title: "南区の地域紹介", url: "https://www.city.sapporo.jp/seiso/jigyousyo/jigyousyo.html" }
+            ],
             シニア: [
                 { title: "紅葉ウオーキング大会", url: "https://www.city.sapporo.jp/minami/news/202510/20251018.html" },
                 { title: "熟年者ふれあい交流会", url: "https://www.city.sapporo.jp/minami/news/202510/20251015-2.html" },
@@ -494,8 +583,8 @@
         // -------------------------------
         const calendarPages = {
             area_1: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami1_07090809.pdf",
-            area_2: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami2_07090809.pdf", 
-            area_3: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami3_07090809.pdf", 
+            area_2: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami2_07090809.pdf",
+            area_3: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami3_07090809.pdf",
             area_4: "https://www.city.sapporo.jp/seiso/kaisyu/08_minami/documents/07minami4_07090809.pdf",
             area_5: "calendar_area5.html",
             area_6: "calendar_area6.html",
@@ -524,6 +613,23 @@
                 { name: "近くの施設", url: "facility_sumikawa_library.html" },
             ],
         };
+        // -------------------------------------------------------------
+        // 🟢 カード式POPUPフロー制御
+        // -------------------------------------------------------------
+        const popup = document.getElementById('popup');
+        const popupCards = document.querySelectorAll('.popup-card');
+        const popupSubmit = document.getElementById('popupSubmit');
+        const popupRegion = document.getElementById('popupRegion');
+        const popupAudienceYes = document.getElementById('popupAudienceYes');
+        const popupAudienceNo = document.getElementById('popupAudienceNo');
+
+        let currentStep = 1;
+        let userData = {
+            isFirst: null,
+            isResident: null,
+            audience: null,
+            region: null
+        };
 
         // -------------------------------
         // 前回訪問データを取得
@@ -548,47 +654,110 @@
                 }
             }
         });
-        // -------------------------------
-        // POPUPの選択時、南区以外/なしを内部的に'なし'に統一
-        // -------------------------------
-        popupRegion.addEventListener('change', () => {
-            // optionのvalueはすでに 'なし' なので基本は不要ですが、念のため
-            if (popupRegion.value === "なし") {
-                popupRegion.value = "なし";
-            }
+
+        const hasVisited_index_bata = localStorage.getItem('hasVisited_index');
+        if (!hasVisited_index) {
+            popup.style.display = 'flex';
+        }
+
+        // カード切替関数
+        function showStep(step) {
+            popupCards.forEach(card => {
+                card.classList.toggle('active', Number(card.dataset.step) === step);
+            });
+            currentStep = step;
+        }
+
+        // 「次へ」「はい」「いいえ」ボタン
+        document.querySelectorAll('.popup-next, .popup-skip').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const answer = e.target.dataset.answer;
+
+                switch (currentStep) {
+                    case 1:
+                        if (answer === 'no') {
+                            popup.style.display = 'none';
+                            return;
+                        }
+                        userData.isFirst = true;
+                        showStep(2);
+                        break;
+
+                    case 2:
+                        userData.isResident = answer;
+                        if (answer === 'yes') showStep(3);
+                        else showStep(4);
+                        break;
+
+                    case 3:
+                        if (!popupAudienceYes.value) {
+                            alert("立場を選択してください");
+                            return;
+                        }
+                        userData.audience = popupAudienceYes.value;
+                        showStep(5);
+                        break;
+
+                    case 4:
+                        if (!popupAudienceNo.value) {
+                            alert("立場を選択してください");
+                            return;
+                        }
+                        userData.audience = popupAudienceNo.value;
+                        showStep(6);
+                        break;
+
+                    case 5:
+                        if (!popupRegion.value) {
+                            alert("地域を選択してください");
+                            return;
+                        }
+                        userData.region = popupRegion.value;
+                        showStep(6);
+                        break;
+                }
+            });
         });
 
-        // -------------------------------
-        // POPUP送信時（初回訪問時のみ）
-        // -------------------------------
+        // 🔙 戻るボタン処理
+        document.querySelectorAll('.popup-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switch (currentStep) {
+                    case 2:
+                        showStep(1);
+                        break;
+                    case 3:
+                        showStep(2);
+                        break;
+                    case 4:
+                        showStep(2);
+                        break;
+                    case 5:
+                        showStep(3);
+                        break;
+                    case 6:
+                        if (userData.isResident === 'yes') showStep(5);
+                        else showStep(4);
+                        break;
+                }
+            });
+        });
+
+        // 完了ボタン
         popupSubmit.addEventListener('click', () => {
-            const selectedRegion = popupRegion.value;
-            const selectedAudience = popupAudience.value;
+            if (userData.isResident === 'no') userData.region = 'なし';
 
-            if (!selectedRegion || !selectedAudience) {
-                alert("両方選択してください");
-                return;
-            }
+            localStorage.setItem('selectedRegion', userData.region);
+            localStorage.setItem('selectedAudience', userData.audience);
+            localStorage.setItem('hasVisited_index', 'true');
 
-            // 選択内容をフォームに反映
-            regionSelect.value = selectedRegion;
-            audienceSelect.value = selectedAudience;
+            regionSelect.value = userData.region;
+            audienceSelect.value = userData.audience;
 
-            // コンテンツ更新
             updateDynamicContent();
-
-            // 保存
-            localStorage.setItem('selectedRegion', selectedRegion);
-            localStorage.setItem('selectedAudience', selectedAudience);
-            localStorage.setItem('hasVisited_index', 'true'); // 初回訪問済みフラグ
-
-            // POPUPを閉じる
             popup.style.display = 'none';
-
-            // 🎯 初回のみツアー開始
             startTour();
         });
-
         // -------------------------------
         // セレクト変更時：保存＋更新
         // -------------------------------

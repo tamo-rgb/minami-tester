@@ -157,6 +157,14 @@
 
 
     <script>
+        // ページが読み込まれたら実行
+        window.addEventListener('DOMContentLoaded', function () {
+            const emergencyLink = document.getElementById('emergency');
+            if (emergencyLink) {
+                emergencyLink.textContent = 'ホームへ戻る';
+                emergencyLink.href = 'index.html';
+            }
+        });
         // 緊急情報サンプルデータ
         const emergencies = [
             {
