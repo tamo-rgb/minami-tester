@@ -72,6 +72,20 @@
         position: relative;
     }
 
+    /* popup内 selectの幅を親に合わせる */
+    .popup-content select {
+        width: 100%;
+        white-space: normal;
+        /* optionの折り返しを許可 */
+        word-break: break-word;
+        /* 長い語句も改行 */
+    }
+
+    /* optionタグ内のテキストも折り返す */
+    .popup-content select option {
+        white-space: normal;
+    }
+
     .popup-content h3 {
         font-size: var(--font-h3);
     }
@@ -388,11 +402,9 @@
                     <option value="">選択してください</option>
                     <option value="area_1">真駒内柏丘/東町/幸町/泉町/南町</option>
                     <option value="area_2">石山東/常盤/滝野/芸術の森</option>
-                    <option value="area_3">藤野/白川/簾舞/砥山/豊滝/硬石山</option>
-                    <option value="area_3">小金湯/定山渓温泉西・東/定山渓</option>
+                    <option value="area_3">藤野/白川/簾舞/砥山/豊滝/硬石山/小金湯/定山渓温泉西・東/定山渓</option>
                     <option value="area_4">真駒内本町/容町/曙町/緑町</option>
-                    <option value="area_5">藻岩下・北ノ沢・中ノ沢</option>
-                    <option value="area_5">南30条～39条の西</option>
+                    <option value="area_5">藻岩下・北ノ沢・中ノ沢/南30条～39条の西</option>
                     <option value="area_6">南沢・石山</option>
                     <option value="area_7">真駒内・川沿</option>
                     <option value="area_8">澄川</option>
@@ -469,12 +481,10 @@
                             <option value="なし">なし</option>
                             <option value="area_1">真駒内柏丘/東町/幸町/泉町/南町</option>
                             <option value="area_2">石山東/常盤/滝野/芸術の森</option>
-                            <option value="area_3">藤野/白川/簾舞/砥山/豊滝</option>
-                            <option value="area_3">硬石山/小金湯/定山渓温泉西・東/定山渓</option>
+                            <option value="area_3">藤野/白川/簾舞/砥山/豊滝/硬石山/小金湯/定山渓温泉西・東/定山渓</option>
                             <option value="area_4">真駒内本町/容町/曙町/緑町</option>
-                            <option value="area_5">南30条～39条の西・藻岩下・北ノ沢・中ノ沢</option>
-                            <option value="area_6">南沢・石山
-                            </option>
+                            <option value="area_5">藻岩下・北ノ沢・中ノ沢/南30条～39条の西</option>
+                            <option value="area_6">南沢・石山</option>
                             <option value="area_7">真駒内・川沿</option>
                             <option value="area_8">澄川</option>
                         </select>
